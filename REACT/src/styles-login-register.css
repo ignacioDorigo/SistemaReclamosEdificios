@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('./img/background-login-register.webp');
+    background-size: cover; /* Ajusta el tamaño de la imagen al contenedor */
+    background-position: center; /* Centra la imagen en el contenedor */
+}
+
+
+.container{
+    text-align: center;
+}
+
+.container_login-register{
+    width: 299px;
+    height: 390px;
+    padding: 20px;
+    border-radius: 14px;
+    background: rgba(169, 155, 155, 0.85);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
+
+}
+
+.login-register{
+    text-align: center;
+}
+
+#miCampoLogin{
+    width: 210px;
+    height: 40px;
+    fill: #D9D9D9;
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 14px;
+    border: 1px solid #ccc;
+}
+
+#miCampoLogin:focus {
+    border: 1px solid #007bff;
+}
+
+#miCampoPassword{
+    width: 210px;
+    height: 40px;
+    fill: #D9D9D9;
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 14px;
+    border: 1px solid #ccc;
+}
+
+#miCampoPassword:focus {
+    border: 1px solid #007bff;
+}
+
+.button_login-register{
+    width: 115px;
+    height: 30px;
+    border-radius: 14px;
+    fill: #D9D9D9;
+    border: 1px solid #ccc;
+}
+
+.button_login-register:focus{
+    border: 1px solid #007bff;
+}
