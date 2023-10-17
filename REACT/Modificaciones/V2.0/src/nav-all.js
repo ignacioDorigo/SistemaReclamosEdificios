@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 import './estilos.css'
 
 function Nav(){
@@ -8,13 +9,20 @@ function Nav(){
                 <h1>Sistema Reclamo</h1>
             </div>
             <div class="right">
-                <a href="register.html">Register</a>
-                <a href="login.html">Login</a>
-                <a href="#">Inicio</a>
+                <button>
+                    <NavLink to='/login'>
+                        Login
+                    </NavLink>
+                </button>
+                <button>
+                    <NavLink to='/register'>
+                        Register
+                    </NavLink>
+                </button>
             </div>
         </div>
 
     )
 }
 
-export default Nav;
+export default Nav; 
