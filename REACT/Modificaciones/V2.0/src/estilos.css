@@ -5,6 +5,7 @@ body{
     background-size: cover;
     background-position: center;
     height: 100vh;
+    
 }
 
 
@@ -85,7 +86,7 @@ body{
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-
+/*Datos de login*/
 .entorno_form {
     display: flex;
     justify-content: center;
@@ -93,13 +94,8 @@ body{
     height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
 }
 
-.login-register{
-    height: auto;
-    background-color: red;
-    text-align: center;
-}
-
 .container_login-register{
+    
     width: 299px;
     height: 390px;
     padding: 20px;
@@ -108,6 +104,20 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra */
 }
 
+.login-register{
+    height: auto;
+    margin: 10px;
+    text-align: center;
+    border-radius: 17px;
+}
+
+.form_login{
+    padding: 0;
+    margin-top: 30px;
+    width: 100%; /* Ajusta el ancho según tus necesidades */
+    text-align: center; /* Centra el contenido horizontalmente en las celdas */
+
+}
 
 #nombre_form{
     width: 210px;
@@ -127,6 +137,7 @@ body{
 }
 
 #contraseña_form{
+    margin-top: 10px;
     width: 210px;
     height: 40px;
     fill: #D9D9D9;
@@ -143,22 +154,57 @@ body{
     border: 1px solid #007bff;
 }
 
-.form_login{
-    background-color: #44B9B7;
-    border: '1px solid #ccc';
-    padding: 0;
-    margin: 0;
-    width: 100%; /* Ajusta el ancho según tus necesidades */
-    text-align: center; /* Centra el contenido horizontalmente en las celdas */
-
+#mail_form{
+    margin-top: 10px;
+    width: 290px;
+    height: 40px;
+    fill: #D9D9D9;
+    text-align: center;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 14px;
+    border: 1px solid #ccc;
 }
 
-
 .boton_login_register{
-    width: 115px;
-    height: 30px;
+    width: 120px;
+    height: 35px;
+    font-size: 20px;
     border-radius: 14px;
     fill: #D9D9D9;
     border: 1px solid #ccc;
     
+}
+/*Home Page*/
+.container_home_page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+
+}
+
+.container_home_page button{
+    margin: 0 100px; /* Espacio entre los botones horizontalmente */
+    width: 210px;
+    height: 50px;
+    fill: #D9D9D9;
+    text-align: center;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 14px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    
+    
+}
+
+.container_home_page button:hover{
+    background-color: grey;
+    color: white;
+    text-decoration: underline;
 }

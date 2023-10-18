@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import '/Applications/Codigo/APP/prueba/src/estilos.css'
+import { NavLink } from "react-router-dom";
+import '../estilos.css'
 
 function Login(){
         const [formData, setFormData] = useState(
@@ -37,8 +38,6 @@ function Login(){
                 <div className="container_login-register">
                 <h1 className='login-register'>LOGIN</h1>
                     <form onSubmit={manejoBoton}>
-                    <br/>
-                    <br/>
                         <table className="form_login">
                             <tr>
                                 <td>
@@ -52,8 +51,6 @@ function Login(){
                                     </input>
                                 </td>
                             </tr>
-                            <br/>
-                            <br/>
                             <tr>
                                 <td>
                                     <input  className="input_password"
@@ -71,14 +68,19 @@ function Login(){
                             <tr>
                                 <td>
                                     <button className="boton_login_register" type="submit"> 
-                                        Login
+                                        <NavLink to='/home_page'>
+                                            Login
+                                        </NavLink> 
                                     </button>
                                 </td>
                             </tr>
+                            <br/>
                             <tr>
                                 <td>
                                     <button className="boton_login_register" type="submit"> 
-                                        Register
+                                        <NavLink to='/register'>
+                                            Register
+                                        </NavLink>
                                     </button>
                                 </td>
                             </tr>

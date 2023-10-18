@@ -7,6 +7,7 @@ import Login from './paginas/login'
 import Register from './paginas/register'
 import Menu from './main-menu'
 import Nav from './nav-all'
+import Home from './paginas/home_page'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login/>}> </Route>
         <Route path="/register" element={<Register/>}> </Route>
+        <Route path="/home_page" element={<Home/>}> </Route>
       </Routes>
     </BrowserRouter>
   );

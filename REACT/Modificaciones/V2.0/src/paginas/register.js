@@ -1,85 +1,107 @@
-import React, { useState } from "react";
+import React, { Component } from 'react';
 
-function Register(){
-        const [formData, setFormData] = useState(
-            {
-                nombre: '',
-                contraseña: '',
-            }
-        );
+class RegistroPersonas extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            mail: '',
+            password: '',
+          personasRegistradas: [],
+        };
+      }
     
-        const manejoBoton = (e) => {
-            e.preventDefault();
-            alert(formData.nombre + "\n" + formData.contraseña);
-            setFormData(
-                {
-                    nombre: '',
-                    contraseña: ''
-                }
-            );
+      handleChange = (e) => {
+        const { name, value } = e.target;
+        this.setState({ [name]: value });
+      }
+    
+      handleSubmit = (e) => {
+        e.preventDefault();
+        const { username, mail, password, personasRegistradas } = this.state;
+        
+        if (username && mail && password) {
+          const nuevaPersona = {
+            username,
+            mail,
+            password
+          };
+    
+          this.setState({
+            username: '',
+            mail: '',
+            password: '',
+            personasRegistradas: [...personasRegistradas, nuevaPersona],
+          });
         }
-    
-        const manejoDatos = (e) => {
-            const { name , value } = e.target;
-            setFormData(
-                {
-                    ...formData, 
-                    [name]: value,
-                }
-            );
-        };
-    
-        const tablaStyle ={
-            backgroundColor:'#44B9B7',
-            border: '1px solid #ccc',
-            padding: '10px',
-        };
-    
-        const botonStyle = {
-            width: '200px',
-            border: '2px solid #ccc',
-            padding: '10px',
-            textAlign: 'center' 
-        };
-    
-        return (
-            <div>
-                <h1>Formulario de Carga - Funcion</h1>
-                <form onSubmit={manejoBoton}>
-                    <table style = {tablaStyle}>
-                        <tr>
-                            <td>
-                                <label htmlFor="nombre"> Nombre </label>
-                            </td>
-                            <td>
-                                <input  type = "text"
-                                        id = "nombre"
-                                        name = "nombre"
-                                        value = {formData.nombre}
-                                        onChange = {manejoDatos}>
-                                </input>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label htmlFor="contraseña"> Contraseña </label>
-                            </td>
-                            <td>
-                                <input  type = "password"
-                                        id = "contraseña"
-                                        name = "contraseña"
-                                        value = {formData.contraseña}
-                                        onChange = {manejoDatos}
-                                        pattern="^(?=.*\d)(?=.*[!@#$%^&*.])(?=.*[a-zA-Z]).{8,}$"
-                                        title="La contraseña debe contener al menos 8 caracteres, incluyendo al menos un número, un carácter especial (!@#$%^&*), y una letra mayúscula o minúscula.">
-                                </input>
-                            </td>
-                        </tr>
-                    </table>
-                    <button style = {botonStyle} type="submit"> Enviar Datos</button>
-                </form>
-            </div>
-    )
-}
+      }
 
-export default Register;
+      render() {
+        return (
+          <div className="entorno_form">
+            <div className="container_login-register">
+              <h2 className="login-register">Registro de Usuarios</h2>
+              <form className="form_login" onSubmit={this.handleSubmit}>
+                <div>
+                  <label htmlFor="username"></label>
+                  <input
+                    type="text"
+                    id="nombre_form"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    className="nombre_form"
+                    placeholder='Username'
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="password"></label>
+                  <input
+                    type="password"
+                    id="contraseña_form"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    className="nombre_form" // Puedes usar la misma clase para password si lo deseas.
+                    placeholder='Password'
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="mail"></label>
+                  <input
+                    type="text"
+                    id="mail_form"
+                    name="mail"
+                    value={this.state.mail}
+                    onChange={this.handleChange}
+                    className="nombre_form" // Puedes usar la misma clase para mail si lo deseas.
+                    placeholder='Mail'
+                  />
+                </div>
+                
+
+                <br/>
+                <br/>
+
+                <button type="submit" className="boton_login_register">Registrar</button>
+
+              </form>
+              <div>
+                <h3>Personas Registradas:</h3>
+                <ul>
+                  {this.state.personasRegistradas.map((persona, index) => (
+                    <li key={index}>
+                      {persona.username}, {persona.mail}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        );
+      }
+    }
+    
+    export default RegistroPersonas;
