@@ -32,19 +32,19 @@ import com.example.demo.views.UnidadView;
 public class Controlador {
 
 	@Autowired
-	EdificioRepository repoEdificio;
+	EdificioRepository edificioRepository;
 
 	@Autowired
-	ImagenRepository repoImagen;
+	ImagenRepository imagenRepository;
 
 	@Autowired
-	PersonaRepository repoPersona;
+	PersonaRepository personaRepository;
 
 	@Autowired
-	ReclamoRepository repoReclamo;
+	ReclamoRepository reclamoRepository;
 
 	@Autowired
-	UnidadRepository repoUnidad;
+	UnidadRepository unidadRepository;
 
 	private static Controlador instancia;
 
@@ -61,7 +61,7 @@ public class Controlador {
 	public List<EdificioView> getEdificios() {
 		List<EdificioView> resultado = new ArrayList<EdificioView>();
 		try {
-			List<Edificio> edificios = repoEdificio.findAll();
+			List<Edificio> edificios = edificioRepository.findAll();
 			for (Edificio edificio : edificios) {
 				EdificioView ediView = edificio.toView();
 				resultado.add(ediView);
@@ -171,7 +171,7 @@ public class Controlador {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			Persona persona = buscarPersona(documento);
 			unidad.transferir(persona);// falta hacer update
-			repoUnidad.save(unidad);
+			unidadRepository.save(unidad);
 			System.out.println("UNIDAD TRANSFERIDA");
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
@@ -186,7 +186,7 @@ public class Controlador {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			Persona persona = buscarPersona(documento);
 			unidad.agregarDuenio(persona);
-			repoUnidad.save(unidad);
+			unidadRepository.save(unidad);
 			System.out.println("DueÃ±o agregado a la unidad");
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
@@ -203,7 +203,7 @@ public class Controlador {
 			if (unidad != null && persona != null) {
 				if (unidad.estaHabitado() == false) {
 					unidad.alquilar(persona);
-					repoUnidad.save(unidad);
+					unidadRepository.save(unidad);
 					System.out.println("Unidad alquilada");
 				}
 			}
@@ -221,7 +221,7 @@ public class Controlador {
 			Persona persona = buscarPersona(documento);
 			if (persona != null && unidad != null) {// considerar casos repetidos
 				unidad.agregarInquilino(persona);
-				repoUnidad.save(unidad);
+				unidadRepository.save(unidad);
 				System.out.println("Inquilino agregado");
 			}
 		} catch (Exception e) {
@@ -235,7 +235,7 @@ public class Controlador {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			if (unidad.estaHabitado()) {
 				unidad.liberar();
-				repoUnidad.save(unidad);
+				unidadRepository.save(unidad);
 				System.out.println("Unidad liberada");
 			} else {
 				System.out.println("la unidad ya estaba deshabitada");
@@ -252,7 +252,7 @@ public class Controlador {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			if (unidad.estaHabitado() == false) {
 				unidad.habitar();
-				repoUnidad.save(unidad);
+				unidadRepository.save(unidad);
 				System.out.println("La unidad se habito");
 			} else {
 				System.out.println("La unidad ya estaba habitada");
@@ -268,7 +268,7 @@ public class Controlador {
 			Persona persona = new Persona(documento, nombre, null, null);
 			Persona posible = buscarPersona(documento);
 			if (posible == null) {
-				repoPersona.save(persona);
+				personaRepository.save(persona);
 				System.out.println("Persona agregada");
 			} else {
 				System.out.println("La persona ya esta en la BD");
@@ -284,7 +284,7 @@ public class Controlador {
 		try {
 			Persona persona = buscarPersona(documento);
 			if (persona != null) {
-				repoPersona.deleteById(documento);
+				personaRepository.deleteById(documento);
 				System.out.println("Persona eliminada");
 			}
 		} catch (Exception e) {
@@ -299,7 +299,7 @@ public class Controlador {
 
 			Edificio edificio = buscarEdificio(codigo);
 			if (edificio != null) {
-				List<Reclamo> reclamos = repoReclamo.findByEdificio(edificio);
+				List<Reclamo> reclamos = reclamoRepository.findByEdificio(edificio);
 				for (Reclamo reclamo : reclamos) {
 					resultado.add(reclamo.toView());
 				}
@@ -316,7 +316,7 @@ public class Controlador {
 		try {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			if (unidad != null) {
-				List<Reclamo> reclamos = repoReclamo.findByUnidad(unidad);
+				List<Reclamo> reclamos = reclamoRepository.findByUnidad(unidad);
 				for (Reclamo reclamo : reclamos) {
 					resultado.add(reclamo.toView());
 				}
@@ -329,7 +329,7 @@ public class Controlador {
 
 	// 18 Listo
 	public ReclamoView reclamosPorNumero(int numero) {
-		Optional<Reclamo> reclamoOptional = repoReclamo.findById(numero);
+		Optional<Reclamo> reclamoOptional = reclamoRepository.findById(numero);
 		if (reclamoOptional.isPresent()) {
 			Reclamo reclamo = reclamoOptional.get();
 			ReclamoView resultado = reclamo.toView();
@@ -344,7 +344,7 @@ public class Controlador {
 		try {
 			Persona persona = buscarPersona(documento);
 			if (persona != null) {
-				List<Reclamo> reclamos = repoReclamo.findByUsuario(persona);
+				List<Reclamo> reclamos = reclamoRepository.findByUsuario(persona);
 				for (Reclamo reclamo : reclamos) {
 					resultado.add(reclamo.toView());
 				}
@@ -364,7 +364,7 @@ public class Controlador {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			Persona persona = buscarPersona(documento);
 			Reclamo reclamo = new Reclamo(persona, edificio, ubicacion, descripcion, unidad);
-			repoReclamo.save(reclamo);
+			reclamoRepository.save(reclamo);
 			System.out.println("Reclamo Agregado");
 			return reclamo.getNumero();
 
@@ -381,7 +381,7 @@ public class Controlador {
 			if (reclamo != null) {
 				reclamo.agregarImagen(direccion, tipo);
 				System.out.println("Imagen Guardada");
-				repoReclamo.save(reclamo);
+				reclamoRepository.save(reclamo);
 			}
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
@@ -394,7 +394,7 @@ public class Controlador {
 			Reclamo reclamo = buscarReclamo(numero);
 			if (reclamo != null) {
 				reclamo.cambiarEstado(estado);
-				repoReclamo.save(reclamo);
+				reclamoRepository.save(reclamo);
 				System.out.println("ESTADO DEL RECLAMO MODIFICADO");
 			}
 		} catch (Exception e) {
@@ -405,7 +405,7 @@ public class Controlador {
 
 	// Listo
 	private Edificio buscarEdificio(int codigo) throws EdificioException {
-		Optional<Edificio> edificioOptional = repoEdificio.findById(codigo);
+		Optional<Edificio> edificioOptional = edificioRepository.findById(codigo);
 		if (edificioOptional.isPresent()) {
 			Edificio edificio = edificioOptional.get();
 			return edificio;
@@ -415,10 +415,10 @@ public class Controlador {
 
 	// Listo
 	private Unidad buscarUnidad(int codigo, String piso, String numero) throws UnidadException {
-		Optional<Edificio> optionalEdificio = repoEdificio.findById(codigo);
+		Optional<Edificio> optionalEdificio = edificioRepository.findById(codigo);
 		if (optionalEdificio.isPresent()) {
 			Edificio edificio = optionalEdificio.get();
-			Optional<Unidad> unidadOptional = repoUnidad.findByEdificioAndPisoAndNumero(edificio, piso, numero);
+			Optional<Unidad> unidadOptional = unidadRepository.findByEdificioAndPisoAndNumero(edificio, piso, numero);
 			if (unidadOptional.isPresent()) {
 				Unidad unidad = unidadOptional.get();
 				return unidad;
@@ -430,7 +430,7 @@ public class Controlador {
 
 	// Listo
 	private Persona buscarPersona(String documento) throws PersonaException {
-		Optional<Persona> personaOptional = repoPersona.findById(documento);
+		Optional<Persona> personaOptional = personaRepository.findById(documento);
 		if (personaOptional.isPresent()) {
 			Persona persona = personaOptional.get();
 			return persona;
@@ -440,7 +440,7 @@ public class Controlador {
 
 	// Listo
 	private Reclamo buscarReclamo(int numero) throws ReclamoException {
-		Optional<Reclamo> reclamoOptional = repoReclamo.findById(numero);
+		Optional<Reclamo> reclamoOptional = reclamoRepository.findById(numero);
 		if (reclamoOptional.isPresent()) {
 			Reclamo reclamo = reclamoOptional.get();
 			return reclamo;
