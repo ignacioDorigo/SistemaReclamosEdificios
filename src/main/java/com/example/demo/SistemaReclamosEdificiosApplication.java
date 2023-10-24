@@ -54,7 +54,7 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 //		Muestra de datos
 
-		mostrarPersonas();
+//		mostrarPersonas();
 //		mostrarEdificios();
 //		mostrarImagenes();
 //		mostrarReclamos();

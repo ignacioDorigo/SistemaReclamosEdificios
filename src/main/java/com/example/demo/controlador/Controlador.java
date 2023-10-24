@@ -57,7 +57,7 @@ public class Controlador {
 		return instancia;
 	}
 
-	// 1 Listo
+	// 1 Listo REST
 	public List<EdificioView> getEdificios() {
 		List<EdificioView> resultado = new ArrayList<EdificioView>();
 		try {
@@ -73,7 +73,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	// 2 Listo
+	// 2 Listo REST
 	public List<UnidadView> getUnidadesPorEdificio(int codigo) throws EdificioException {
 		List<UnidadView> resultado = new ArrayList<UnidadView>();
 		try {
@@ -89,7 +89,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	// 3 Listo
+	// 3 Listo REST
 	public List<PersonaView> habilitadosPorEdificio(int codigo) throws EdificioException {
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		try {
@@ -105,7 +105,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	// 4 Listo
+	// 4 Listo REST
 	public List<PersonaView> dueniosPorEdificio(int codigo) throws EdificioException {
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		try {
@@ -120,7 +120,7 @@ public class Controlador {
 
 	}
 
-	// 5 Listo
+	// 5 Listo REST
 	public List<PersonaView> habitantesPorEdificio(int codigo) throws EdificioException {
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		try {
@@ -134,8 +134,8 @@ public class Controlador {
 
 		return resultado;
 	}
-
-	// 6 Listo
+ 
+	// 6 Listo REST
 	public List<PersonaView> dueniosPorUnidad(int codigo, String piso, String numero) throws UnidadException {
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		try {
@@ -149,7 +149,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	// 7 Listo
+	// 7 Listo REST
 	public List<PersonaView> inquilinosPorUnidad(int codigo, String piso, String numero) throws UnidadException {
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
 		try {
@@ -164,7 +164,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	// 8 Listo
+	// 8 Listo REST
 	public void transferirUnidad(int codigo, String piso, String numero, String documento)
 			throws UnidadException, PersonaException {
 		try {
@@ -176,10 +176,9 @@ public class Controlador {
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 		}
-
 	}
 
-	// 9 Listo
+	// 9 Listo REST
 	public void agregarDuenioUnidad(int codigo, String piso, String numero, String documento)
 			throws UnidadException, PersonaException {
 		try {
@@ -187,19 +186,21 @@ public class Controlador {
 			Persona persona = buscarPersona(documento);
 			unidad.agregarDuenio(persona);
 			unidadRepository.save(unidad);
-			System.out.println("DueÃ±o agregado a la unidad");
+			System.out.println("Duenio agregado a la unidad");
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 		}
 
 	}
 
-	// 10 Listo
+	// 10 Listo REST
 	public void alquilarUnidad(int codigo, String piso, String numero, String documento)
 			throws UnidadException, PersonaException {
 		try {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
+			System.out.println(unidad);//
 			Persona persona = buscarPersona(documento);
+			System.out.println(persona);//
 			if (unidad != null && persona != null) {
 				if (unidad.estaHabitado() == false) {
 					unidad.alquilar(persona);
@@ -213,7 +214,7 @@ public class Controlador {
 
 	}
 
-	// 11 Listo
+	// 11 Listo REST
 	public void agregarInquilinoUnidad(int codigo, String piso, String numero, String documento)
 			throws UnidadException, PersonaException {
 		try {
@@ -229,7 +230,7 @@ public class Controlador {
 		}
 	}
 
-	// 12 Listo
+	// 12 Listo REST
 	public void liberarUnidad(int codigo, String piso, String numero) throws UnidadException {
 		try {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
@@ -246,7 +247,7 @@ public class Controlador {
 
 	}
 
-	// 13 Listo
+	// 13 Listo REST
 	public void habitarUnidad(int codigo, String piso, String numero) throws UnidadException {
 		try {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
@@ -262,7 +263,7 @@ public class Controlador {
 		}
 	}
 
-	// 14 Listo
+	// 14 Listo REST
 	public void agregarPersona(String documento, String nombre) throws PersonaException {
 		try {
 			Persona persona = new Persona(documento, nombre, null, null);
@@ -279,7 +280,7 @@ public class Controlador {
 
 	}
 
-	// 15 Listo
+	// 15 Listo REST
 	public void eliminarPersona(String documento) throws PersonaException {
 		try {
 			Persona persona = buscarPersona(documento);
@@ -292,7 +293,7 @@ public class Controlador {
 		}
 	}
 
-	// 16 Listo
+	// 16 Listo REST
 	public List<ReclamoView> reclamosPorEdificio(int codigo) throws EdificioException {
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
 		try {
@@ -310,7 +311,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	// 17 Listo
+	// 17 Listo REST
 	public List<ReclamoView> reclamosPorUnidad(int codigo, String piso, String numero) throws UnidadException {
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
 		try {
@@ -327,7 +328,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	// 18 Listo
+	// 18 Listo REST
 	public ReclamoView reclamosPorNumero(int numero) {
 		Optional<Reclamo> reclamoOptional = reclamoRepository.findById(numero);
 		if (reclamoOptional.isPresent()) {
@@ -338,7 +339,7 @@ public class Controlador {
 		return null;
 	}
 
-	// 19 Listo
+	// 19 Listo REST
 	public List<ReclamoView> reclamosPorPersona(String documento) throws PersonaException {
 		List<ReclamoView> resultado = new ArrayList<ReclamoView>();
 		try {
@@ -356,7 +357,7 @@ public class Controlador {
 		return resultado;
 	}
 
-	// 20 Listo
+	// 20 Listo REST
 	public int agregarReclamo(int codigo, String piso, String numero, String documento, String ubicacion,
 			String descripcion) throws EdificioException, UnidadException, PersonaException {
 		try {
@@ -374,7 +375,7 @@ public class Controlador {
 		return -1;
 	}
 
-	// 21 Listo
+	// 21 Listo REST
 	public void agregarImagenAReclamo(int numero, String direccion, String tipo) throws ReclamoException {
 		try {
 			Reclamo reclamo = buscarReclamo(numero);
@@ -403,7 +404,7 @@ public class Controlador {
 
 	}
 
-	// Listo
+	// Listo (NO SE SI HAY QUE HACER REST)
 	private Edificio buscarEdificio(int codigo) throws EdificioException {
 		Optional<Edificio> edificioOptional = edificioRepository.findById(codigo);
 		if (edificioOptional.isPresent()) {
