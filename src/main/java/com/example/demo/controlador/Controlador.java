@@ -1,4 +1,4 @@
-package com.example.demo.controlador;
+	package com.example.demo.controlador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.exceptions.EdificioException;
 import com.example.demo.exceptions.PersonaException;
@@ -24,6 +25,7 @@ import com.example.demo.repository.ReclamoRepository;
 import com.example.demo.repository.UnidadRepository;
 import com.example.demo.views.EdificioView;
 import com.example.demo.views.Estado;
+import com.example.demo.views.ImagenView;
 import com.example.demo.views.PersonaView;
 import com.example.demo.views.ReclamoView;
 import com.example.demo.views.UnidadView;
@@ -134,7 +136,7 @@ public class Controlador {
 
 		return resultado;
 	}
- 
+
 	// 6 Listo REST
 	public List<PersonaView> dueniosPorUnidad(int codigo, String piso, String numero) throws UnidadException {
 		List<PersonaView> resultado = new ArrayList<PersonaView>();
@@ -164,18 +166,17 @@ public class Controlador {
 		return resultado;
 	}
 
-	
 	// 8 Listo REST
 	public void transferirUnidad(int codigo, String piso, String numero, String documento)
 			throws UnidadException, PersonaException {
 		try {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			Persona persona = buscarPersona(documento);
-			if(unidad!= null && persona!=null) {
+			if (unidad != null && persona != null) {
 				unidad.transferir(persona);// falta hacer update
 				unidadRepository.save(unidad);
 				System.out.println("UNIDAD TRANSFERIDA");
-			}else {
+			} else {
 				System.out.println("LA UNIDAD O LA PERSONA NO EXISTE");
 			}
 		} catch (Exception e) {
@@ -452,5 +453,40 @@ public class Controlador {
 			return reclamo;
 		}
 		return null;
+	}
+
+	// Extra
+	public List<ImagenView> buscarImagenesPorNumeroReclamo(int idReclamo) throws ReclamoException {
+		List<ImagenView> resultado = new ArrayList<ImagenView>();
+		try {
+			Reclamo reclamo = buscarReclamo(idReclamo);
+			if (reclamo != null) {
+				List<Imagen> imagenes = reclamo.getImagenes();
+				for (Imagen imagen : imagenes) {
+					resultado.add(imagen.toView());
+				}
+			}
+			return resultado;
+		} catch (Exception e) {
+			System.out.println("Error " + e.getMessage());
+		}
+		return resultado;
+	}
+
+	public List<String> buscarUrlPorReclamo(int idReclamo) {
+		List<String> urls = new ArrayList<String>();
+		try {
+			Reclamo reclamo = buscarReclamo(idReclamo);
+			if (reclamo != null) {
+				List<Imagen> imagenes = reclamo.getImagenes();
+				for (Imagen imagen : imagenes) {
+					urls.add(imagen.getDireccion());
+				}
+			}
+			return urls;
+		} catch (Exception e) {
+			System.out.println("Error " + e.getMessage());
+		}
+		return urls;
 	}
 }

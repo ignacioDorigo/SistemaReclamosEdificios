@@ -127,6 +127,14 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 //		22)
 //		controlador.cambiarEstado(5, Estado.abierto);
 
+		// extra
+//		controlador.agregarImagenAReclamo(5, "imag12.com", "png");
+//		controlador.agregarImagenAReclamo(5, "imag111.com", "png");
+//		controlador.agregarImagenAReclamo(5, "imag1984.com", "png");
+
+//		System.out.println(controlador.buscarImagenesPorNumeroReclamo(5));
+
+//		mostrarImagenes();
 	}
 
 	// Metodo para mostrar las List<PersonaView>

@@ -1,5 +1,7 @@
 package com.example.demo.modelo;
 
+import com.example.demo.views.ImagenView;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -67,6 +69,10 @@ public class Imagen {
 
 	public void setReclamo(Reclamo reclamo) {
 		this.reclamo = reclamo;
+	}
+
+	public ImagenView toView() {
+		return new ImagenView(numero, direccion, tipo);
 	}
 
 	public String toString() {

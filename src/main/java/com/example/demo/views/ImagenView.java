@@ -39,4 +39,9 @@ public class ImagenView {
 		this.tipo = tipo;
 	}
 
+	@Override
+	public String toString() {
+		return "ImagenView [numero=" + numero + ", direccion=" + direccion + ", tipo=" + tipo + "]";
+	}
+
 }
