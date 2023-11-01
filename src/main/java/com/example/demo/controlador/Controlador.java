@@ -164,15 +164,20 @@ public class Controlador {
 		return resultado;
 	}
 
+	
 	// 8 Listo REST
 	public void transferirUnidad(int codigo, String piso, String numero, String documento)
 			throws UnidadException, PersonaException {
 		try {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			Persona persona = buscarPersona(documento);
-			unidad.transferir(persona);// falta hacer update
-			unidadRepository.save(unidad);
-			System.out.println("UNIDAD TRANSFERIDA");
+			if(unidad!= null && persona!=null) {
+				unidad.transferir(persona);// falta hacer update
+				unidadRepository.save(unidad);
+				System.out.println("UNIDAD TRANSFERIDA");
+			}else {
+				System.out.println("LA UNIDAD O LA PERSONA NO EXISTE");
+			}
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 		}
@@ -220,7 +225,7 @@ public class Controlador {
 		try {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			Persona persona = buscarPersona(documento);
-			if (persona != null && unidad != null) {// considerar casos repetidos
+			if (persona != null && unidad != null && unidad.estaHabitado() != false) {// considerar casos repetidos
 				unidad.agregarInquilino(persona);
 				unidadRepository.save(unidad);
 				System.out.println("Inquilino agregado");
