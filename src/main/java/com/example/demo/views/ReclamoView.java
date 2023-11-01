@@ -16,17 +16,20 @@ public class ReclamoView {
 	private String descripcion;
 	private UnidadView unidad;
 	private Estado estado;
-	private List<ImagenView> imagenes;
 
 	public ReclamoView() {
 
 	}
 
-	public ReclamoView(int numero, String ubicacion, String descripcion, Estado estado) {
+	public ReclamoView(int numero, PersonaView usuario, EdificioView edificio, String ubicacion, String descripcion,
+			UnidadView unidad, Estado estado) {
 		super();
 		this.numero = numero;
+		this.usuario = usuario;
+		this.edificio = edificio;
 		this.ubicacion = ubicacion;
 		this.descripcion = descripcion;
+		this.unidad = unidad;
 		this.estado = estado;
 	}
 
@@ -38,16 +41,16 @@ public class ReclamoView {
 		this.numero = numero;
 	}
 
-	public PersonaView getUsuario() {
-		return usuario;
+	public String getUsuario() {
+		return usuario.getDocumento();
 	}
 
 	public void setUsuario(PersonaView usuario) {
 		this.usuario = usuario;
 	}
 
-	public EdificioView getEdificio() {
-		return edificio;
+	public Integer getEdificio() {
+		return edificio.getCodigo();
 	}
 
 	public void setEdificio(EdificioView edificio) {
@@ -70,8 +73,8 @@ public class ReclamoView {
 		this.descripcion = descripcion;
 	}
 
-	public UnidadView getUnidad() {
-		return unidad;
+	public int getUnidad() {
+		return unidad.getId();
 	}
 
 	public void setUnidad(UnidadView unidad) {
@@ -84,14 +87,6 @@ public class ReclamoView {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
-	}
-
-	public List<ImagenView> getImagenes() {
-		return imagenes;
-	}
-
-	public void setImagenes(List<ImagenView> imagenes) {
-		this.imagenes = imagenes;
 	}
 
 	public String toString() {

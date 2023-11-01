@@ -149,7 +149,8 @@ public class Reclamo {
 	}
 
 	public ReclamoView toView() {
-		ReclamoView reclamoView = new ReclamoView(numero, ubicacion, descripcion, estado);
+		ReclamoView reclamoView = new ReclamoView(numero, usuario.toView(), edificio.toView(), ubicacion, descripcion,
+				unidad.toView(), estado);
 		return reclamoView;
 	}
 
