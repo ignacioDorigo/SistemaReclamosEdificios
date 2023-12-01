@@ -75,7 +75,10 @@ public class Persona {
 		return new PersonaView(documento, nombre);
 	}
 
+	@Override
 	public String toString() {
-		return "DOCUMENTO: " + documento + " , NOMBRE: " + nombre + " , MAIL: " + mail;
+		return "Persona [documento=" + documento + ", nombre=" + nombre + ", mail=" + mail + ", password=" + password
+				+ "]";
 	}
+
 }

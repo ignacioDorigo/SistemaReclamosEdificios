@@ -89,8 +89,15 @@ public class ReclamoView {
 		this.estado = estado;
 	}
 
+	@Override
 	public String toString() {
-		return numero + " " + ubicacion + " " + descripcion + " " + estado;
+		return "ReclamoView [numero=" + numero + ", usuario=" + usuario.getDocumento() + ", edificio="
+				+ edificio.getCodigo() + ", ubicacion=" + ubicacion + ", descripcion=" + descripcion + ", unidad="
+				+ unidad.getId() + ", estado=" + estado + "]";
 	}
+
+//	public String toString() {
+//		return numero + " " + ubicacion + " " + descripcion + " " + estado;
+//	}
 
 }

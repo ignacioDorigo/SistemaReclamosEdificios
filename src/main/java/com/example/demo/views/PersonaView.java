@@ -1,7 +1,7 @@
 package com.example.demo.views;
 
 public class PersonaView {
-	
+
 	private String documento;
 	private String nombre;
 
@@ -29,7 +29,13 @@ public class PersonaView {
 		this.nombre = nombre;
 	}
 
+	@Override
 	public String toString() {
-		return documento + " " + nombre;
+		return "PersonaView [documento=" + documento + ", nombre=" + nombre + "]";
 	}
+
+//	public String toString() {
+//		return documento + " " + nombre;
+//	}
+
 }

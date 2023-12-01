@@ -39,8 +39,9 @@ public class EdificioView {
 		this.direccion = direccion;
 	}
 
+	@Override
 	public String toString() {
-		return codigo + " " + nombre;
+		return "EdificioView [codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + "]";
 	}
 
 }

@@ -169,7 +169,10 @@ public class Unidad {
 		return new UnidadView(id, piso, numero, habitado, auxEdificio);
 	}
 
+	@Override
 	public String toString() {
-		return "Unidad : " + id + "  piso: " + piso + "  numero: " + numero;
+		return "Unidad [id=" + id + ", piso=" + piso + ", numero=" + numero + ", habitado=" + habitado + ", edificio="
+				+ edificio.getCodigo() + "]";
 	}
+
 }

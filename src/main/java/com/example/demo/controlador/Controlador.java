@@ -1,4 +1,4 @@
-	package com.example.demo.controlador;
+package com.example.demo.controlador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -364,16 +364,25 @@ public class Controlador {
 	}
 
 	// 20 Listo REST
+	// Solo va a poder agregar un reclamo la persona que sea inquilino o duenio de
+	// la unidad
+	// modifique 1/12
 	public int agregarReclamo(int codigo, String piso, String numero, String documento, String ubicacion,
 			String descripcion) throws EdificioException, UnidadException, PersonaException {
 		try {
 			Edificio edificio = buscarEdificio(codigo);
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			Persona persona = buscarPersona(documento);
-			Reclamo reclamo = new Reclamo(persona, edificio, ubicacion, descripcion, unidad);
-			reclamoRepository.save(reclamo);
-			System.out.println("Reclamo Agregado");
-			return reclamo.getNumero();
+			if (persona == null) {
+				return -1;
+			} else if (esDuenio(unidad.getDuenios(), persona) || esInquilino(unidad.getInquilinos(), persona)) {
+				// si entra aca es duenio,inquilino o ambos
+				// entonces puede crear un reclamo
+				Reclamo reclamo = new Reclamo(persona, edificio, ubicacion, descripcion, unidad);
+				reclamoRepository.save(reclamo);
+				System.out.println("Reclamo Agregado");
+				return reclamo.getNumero();
+			}
 
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
@@ -381,21 +390,52 @@ public class Controlador {
 		return -1;
 	}
 
-	// 21 Listo REST
-	public void agregarImagenAReclamo(int numero, String direccion, String tipo) throws ReclamoException {
+	// agregue 1/12
+	public boolean esDuenio(List<Persona> duenios, Persona persona) {
+		String documentoPersona = persona.getDocumento();
+		for (Persona duenio : duenios) {
+			String documentoDuenio = duenio.getDocumento();
+			if (documentoDuenio.equals(documentoPersona)) {
+				return true; // Si entra aca, es porque recorrio los duenios y alguno tiene el mismo dni
+			}
+		}
+		return false;
+	}
+
+	// agregue 1/12
+	public boolean esInquilino(List<Persona> inquilinos, Persona persona) {
+		String documentoPersona = persona.getDocumento();
+		for (Persona inquilino : inquilinos) {
+			String documentoInquilino = inquilino.getDocumento();
+			if (documentoInquilino.equals(documentoPersona)) {
+				return true; // Si entra aca, es porque recorrio los inquilinos y alguno tiene el mismo dni
+			}
+		}
+		return false;
+	}
+
+	// 21 Listo REST (modifique 1/12)
+	public void agregarImagenAReclamo(int numero, String direccion, String tipo, String documento)
+			throws ReclamoException {
 		try {
 			Reclamo reclamo = buscarReclamo(numero);
-			if (reclamo != null) {
-				reclamo.agregarImagen(direccion, tipo);
-				System.out.println("Imagen Guardada");
-				reclamoRepository.save(reclamo);
+			if (reclamo != null) { // vericamos que el reclamo exista
+				String dniCreadorReclamo = reclamo.getUsuario().getDocumento();
+				if (dniCreadorReclamo.equals(documento)) {
+					reclamo.agregarImagen(direccion, tipo);
+					System.out.println("Imagen Guardada");
+					reclamoRepository.save(reclamo);
+				} else {
+					System.out.println("No sos el creador de este reclamo, no podes agregar imagen");
+				}
+
 			}
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 		}
 	}
 
-	// 22
+	// 22 solo lo va a poder hacer el admin (hay que modificar 1/12)
 	public void cambiarEstado(int numero, Estado estado) throws ReclamoException {
 		try {
 			Reclamo reclamo = buscarReclamo(numero);
@@ -489,4 +529,49 @@ public class Controlador {
 		}
 		return urls;
 	}
+
+	// Hay que hacer rest (agregue 1/12)
+	public void agregarEdificio(int codigo, String nombre, String direccion) {
+		List<Edificio> edificios = edificioRepository.findAll();
+		boolean sePuedeCrear = true;
+		for (Edificio edificio : edificios) {
+			if (mismaDireccionOcodigo(codigo, direccion, edificio)) {
+				sePuedeCrear = false;
+				break;
+			}
+		}
+		if (sePuedeCrear == false) {
+			System.out.println("No se puede crear ya que el codigo o direccion esta repetido ");
+		} else {
+			Edificio nuevo = new Edificio(codigo, nombre, direccion);
+			edificioRepository.save(nuevo);
+		}
+	}
+
+	public void eliminarEdificio(int codigo) {
+		if (edificioRepository.existsById(codigo)) {// Si existe ese codigo de edifcio en la bd
+			List<Reclamo> reclamos = reclamoRepository.findAll();
+			for (Reclamo r : reclamos) {
+				if (r.getEdificio().getCodigo() == codigo) {
+					reclamoRepository.deleteById(r.getNumero()); // borramos los reclamos asociados a ese edificio
+				}
+			}
+			System.out.println("El edificio se ha eliminado");
+			edificioRepository.deleteById(codigo);
+		} else {
+			System.out.println("El edificio con ese codigo no existe");
+		}
+
+	}
+
+	// Hay que verificar que no pueda haber 2
+	// edificios con el mismo codigo ni direccion
+	// si da true es porque esta repetido algun dato
+	public boolean mismaDireccionOcodigo(int codigo, String direccion, Edificio edificio) {
+		if (edificio.getCodigo() == codigo || edificio.getDireccion().equals(direccion)) {
+			return true;
+		}
+		return false;
+	}
+
 }

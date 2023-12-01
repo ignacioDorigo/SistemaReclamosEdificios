@@ -56,8 +56,8 @@ public class ReclamoController {
 
 	@PostMapping("/agregarImagenAReclamo")
 	public void agregarImagenAReclamo(@RequestParam int numero, @RequestParam String direccion,
-			@RequestParam String tipo) throws ReclamoException {
-		controlador.agregarImagenAReclamo(numero, direccion, tipo);
+			@RequestParam String tipo, @RequestParam String documento) throws ReclamoException {
+		controlador.agregarImagenAReclamo(numero, direccion, tipo, documento);
 	}
 
 	@PutMapping("/cambiarEstado")

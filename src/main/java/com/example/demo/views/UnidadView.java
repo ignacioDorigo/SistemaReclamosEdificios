@@ -59,8 +59,14 @@ public class UnidadView {
 		this.edificio = edificio;
 	}
 
+	@Override
 	public String toString() {
-		return piso + " " + numero;
+		return "UnidadView [id=" + id + ", piso=" + piso + ", numero=" + numero + ", habitado=" + habitado
+				+ ", edificio=" + edificio.getCodigo() + "]";
 	}
+
+//	public String toString() {
+//		return piso + " " + numero;
+//	}
 
 }

@@ -52,89 +52,179 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-//		Muestra de datos
+		Scanner scan = new Scanner(System.in);
+		Integer opcion = 0;
+		while (opcion != -1) {
+			mostrarOpciones();
+			System.out.print("SU OPCION: ");
+			opcion = scan.nextInt();
+			System.out.println("");
+			if (opcion == 1) {
+				System.out.println("----------- EDIFICIOS -----------");
+//				mostrarEdificioView(controlador.getEdificios());
+				mostrarEdificios();
+			} else if (opcion == 2) {
+				System.out.println("----------- PERSONAS -----------");
+				mostrarPersonas();
+			} else if (opcion == 3) {
+				System.out.println("----------- IMAGENES -----------");
+				mostrarImagenes();
+			} else if (opcion == 4) {
+				System.out.println("----------- RECLAMOS -----------");
+				mostrarReclamos();
+			} else if (opcion == 5) {
+				System.out.println("----------- UNIDADES -----------");
+				mostrarUnidades();
+			} else if (opcion == 6) { // agregar edificio
+				int codigo = 10;
+				String nombreEdificio = "Tower Puerto Madero Club";
+				String direccion = "Costanera NorteSur 2020";
+				controlador.agregarEdificio(codigo, nombreEdificio, direccion);
+			} else if (opcion == 7) { // eliminar edificio
+				int codigo = 1;
+				controlador.eliminarEdificio(codigo);
+			} else if (opcion == 8) {
+//				2) 
+				int codigoEdificio = 8;
+				mostrarUnidadView(controlador.getUnidadesPorEdificio(codigoEdificio));
 
-//		mostrarPersonas();
-//		mostrarEdificios();
-//		mostrarImagenes();
-//		mostrarReclamos();
-//		mostrarUnidades();
+			} else if (opcion == 9) {
+//				3) 
+				int codigoEdificio = 8;
+				mostrarPersonaView(controlador.habilitadosPorEdificio(codigoEdificio));
 
-//		1)
-//		mostrarEdificioView(controlador.getEdificios());
-//
-//		2) 
-//		mostrarUnidadView(controlador.getUnidadesPorEdificio(8));
-//
-//		3) 
-//		mostrarPersonaView(controlador.habilitadosPorEdificio(7));
-//
-//		4) 
-//		mostrarPersonaView(controlador.dueniosPorEdificio(1));
-//
-//		5)
-//		mostrarPersonaView(controlador.habitantesPorEdificio(1));
-//
-//		6) 
-//		mostrarPersonaView(controlador.dueniosPorUnidad(1, "1", "1"));
-//
-//		7) 
-//		mostrarPersonaView(controlador.inquilinosPorUnidad(6, "1", "1"));
-//
-//		8) 
-//		controlador.transferirUnidad(1, "10", "6", "DNI44007547");
+			} else if (opcion == 10) {
+//				4) 
+				int codigoEdificio = 1;
+				mostrarPersonaView(controlador.dueniosPorEdificio(codigoEdificio));
 
-//		9) 
-//		controlador.alquilarUnidad(1, "1", "6", "DNI44007547");
-//
-//		10) 
-//		controlador.agregarDuenioUnidad(1, "1", "1", "DNI30161468");
-//
-//		11) 
-//		controlador.agregarInquilinoUnidad(1, "10", "6", "DNI44007547");
-//		controlador.agregarInquilinoUnidad(1, "1", "1", "DNI30662769");
-//
-//		12) 
-//		controlador.liberarUnidad(1, "10", "6");
-//
-//		13) 
-//		controlador.habitarUnidad(1, "1", "1");
-//
-//		14)
-//		controlador.agregarPersona("DNI44007547", "SACK, NICOLAS");
-//
-//		15)
-//		controlador.eliminarPersona("DNI42411691");
-//
-//		16)
-//		mostrarReclamoView(controlador.reclamosPorEdificio(3));
-//
-//		17)
-//		mostrarReclamoView(controlador.reclamosPorUnidad(1, "1", "1"));
-//
-//		18)
-//		System.out.println(controlador.reclamosPorNumero(5));
-//
-//		19) 
-//		mostrarReclamoView(controlador.reclamosPorPersona("DNI30314545"));
-//
-//		20)
-//		controlador.agregarReclamo(1, "10", "6", "DNI30314545", "cocina", "gotera en el techo");
-//
-//		21)
-//		controlador.agregarImagenAReclamo(5, "C//users/escritorio/fotoRotura.jpg","JPG");
-//
-//		22)
-//		controlador.cambiarEstado(5, Estado.abierto);
+			} else if (opcion == 11) {
+//				5)
+				int codigoEdificio = 1;
+				mostrarPersonaView(controlador.habitantesPorEdificio(codigoEdificio));
 
-		// extra
-//		controlador.agregarImagenAReclamo(5, "imag12.com", "png");
-//		controlador.agregarImagenAReclamo(5, "imag111.com", "png");
-//		controlador.agregarImagenAReclamo(5, "imag1984.com", "png");
+			} else if (opcion == 12) {
+//				6) 
+				int codigoEdificio = 1;
+				String piso = "1";
+				String numero = "1";
+				mostrarPersonaView(controlador.dueniosPorUnidad(codigoEdificio, piso, numero));
 
-//		System.out.println(controlador.buscarImagenesPorNumeroReclamo(5));
+			} else if (opcion == 13) {
+//				7) 
+				int codigoEdificio = 6;
+				String piso = "1";
+				String numero = "1";
+				mostrarPersonaView(controlador.inquilinosPorUnidad(codigoEdificio, piso, numero));
 
-//		mostrarImagenes();
+			} else if (opcion == 14) {
+//				8)
+				int codigoEdificio = 1;
+				String piso = "10";
+				String numero = "6";
+				String documento = "DNI42411691";
+				controlador.transferirUnidad(codigoEdificio, piso, numero, documento);
+
+			} else if (opcion == 15) {
+
+//				9)
+				int codigoEdificio = 1;
+				String piso = "1";
+				String numero = "6";
+				String documento = "DNI42411691";
+				controlador.alquilarUnidad(codigoEdificio, piso, numero, documento);
+
+			} else if (opcion == 16) {
+//				10) 
+				int codigoEdificio = 1;
+				String piso = "1";
+				String numero = "1";
+				String documento = "DNI30161468";
+				controlador.agregarDuenioUnidad(codigoEdificio, piso, numero, documento);
+
+			} else if (opcion == 17) {
+//				11) 
+				int codigoEdificio = 1;
+				String piso = "10";
+				String numero = "6";
+				String documento = "DNI42411691";
+				controlador.agregarInquilinoUnidad(codigoEdificio, piso, numero, documento);
+				controlador.agregarInquilinoUnidad(codigoEdificio, "1", "1", "DNI30662769");
+
+			} else if (opcion == 18) {
+//				12) 
+				int codigoEdificio = 1;
+				String piso = "10";
+				String numero = "6";
+				controlador.liberarUnidad(codigoEdificio, piso, numero);
+
+			} else if (opcion == 19) {
+//				13) 
+				int codigoEdificio = 1;
+				String piso = "1";
+				String numero = "1";
+				controlador.habitarUnidad(codigoEdificio, piso, numero);
+
+			} else if (opcion == 20) {
+//				14)
+				String documento = "DNI42411691";
+				String nombre = "DORIGO, IGNACIO TOMAS";
+				controlador.agregarPersona(documento, nombre);
+
+			} else if (opcion == 21) {
+//				15)
+				String documento = "DNI42411691";
+				controlador.eliminarPersona(documento);
+
+			} else if (opcion == 22) {
+//				16)
+				int codigoEdificio = 3;
+				mostrarReclamoView(controlador.reclamosPorEdificio(codigoEdificio));
+
+			} else if (opcion == 23) {
+//				17)
+				int codigoEdificio = 1;
+				String piso = "1";
+				String numero = "1";
+				mostrarReclamoView(controlador.reclamosPorUnidad(codigoEdificio, piso, numero));
+
+			} else if (opcion == 24) {
+//				18)
+				int numeroReclamo = 5;
+				System.out.println(controlador.reclamosPorNumero(numeroReclamo));
+
+			} else if (opcion == 25) {
+//				19) 
+				String documento = "DNI30314545";
+				mostrarReclamoView(controlador.reclamosPorPersona(documento));
+
+			} else if (opcion == 26) {
+//				20)
+				int codigoEdificio = 1;
+				String pisoUnidad = "10";
+				String numeroUnidad = "6";
+				String documento = "DNI30314545";
+				String ubicacionReclamo = "cocina";
+				String descripcionReclamo = "gotera en el techo";
+				controlador.agregarReclamo(codigoEdificio, pisoUnidad, numeroUnidad, documento, ubicacionReclamo,
+						descripcionReclamo);
+			} else if (opcion == 27) {
+//				21)
+				int numeroReclamo = 5;
+				String path = "C//users/escritorio/fotoRotura.jpg";
+				String tipo = "JPG";
+				String documentoAgregaImagen = "DNI42411691";
+				controlador.agregarImagenAReclamo(numeroReclamo, path, tipo, documentoAgregaImagen);
+
+			} else if (opcion == 28) {
+//				22)
+				int numeroReclamo = 5;
+				Estado nuevoEstado = Estado.anulado;
+				controlador.cambiarEstado(numeroReclamo, nuevoEstado);
+
+			}
+			System.out.println();
+		}
 	}
 
 	// Metodo para mostrar las List<PersonaView>
@@ -207,6 +297,40 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 		for (Unidad unidad : unidades) {
 			System.out.println(unidad);
 		}
+	}
+
+	public void mostrarOpciones() {
+		System.out.println("---------------------- PROGRAMA DE RECLAMOS ---------------------- ");
+		System.out.println("1) Mostrar Edificios ");
+		System.out.println("2) Mostrar Personas ");
+		System.out.println("3) Mostrar Imagenes ");
+		System.out.println("4) Mostrar Reclamos ");
+		System.out.println("5) Mostrar Unidades ");
+		System.out.println("6) Agregar Edificio ");
+		System.out.println("7) Eliminar Edificio ");
+		System.out.println("8) Mostrar unidades por edificio");
+		System.out.println("9) Mostrar habilitados por edificio");
+		System.out.println("10) Mostrar duenios por edificio");
+		System.out.println("11) Mostrar habitantes por edificio");
+		System.out.println("12) Mostrar duenios por unidad");
+		System.out.println("13) Mostrar inquilinos por unidad");
+		System.out.println("14) Transferir unidad");
+		System.out.println("15) Alquilar unidad");
+		System.out.println("16) Agregar duenio a unidad");
+		System.out.println("17) Agregar inquilino a unidad");
+		System.out.println("18) Liberar unidad");
+		System.out.println("19) Habitar unidad");
+		System.out.println("20) Agregar Persona");
+		System.out.println("21) Eliminar Persona");
+		System.out.println("22) Reclamos por edificio");
+		System.out.println("23) Reclamos por unidad");
+		System.out.println("24) Reclamos por numero reclamo");
+		System.out.println("25) Reclamos por Persona(documento)");
+		System.out.println("26) Agregar reclamo");
+		System.out.println("27) Agregar Imagen a Reclamo");
+		System.out.println("28) Cambiar estado reclamo");
+		System.out.println(" -1 PARA TERMINAR");
+
 	}
 
 }

@@ -34,11 +34,11 @@ public class Reclamo {
 	@Column(name = "idreclamo")
 	private int numero;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "documento")
 	private Persona usuario;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "codigo")
 	private Edificio edificio;
 
@@ -48,7 +48,7 @@ public class Reclamo {
 	@Column(length = 1000)
 	private String descripcion;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "identificador")
 	private Unidad unidad;
 
@@ -154,11 +154,11 @@ public class Reclamo {
 		return reclamoView;
 	}
 
+	@Override
 	public String toString() {
-		String palabra = "ID RECLAMO: " + numero + " , HECHO POR: " + usuario.getDocumento() + " , UBICACION: "
-				+ ubicacion + " , DESCRIPCION:  " + descripcion + " , UNIDAD AFECTADA: " + unidad.getId()
-				+ " , ESTADO: " + estado;
-		return palabra;
+		return "Reclamo [numero=" + numero + ", usuario=" + usuario.getDocumento() + ", edificio="
+				+ edificio.getCodigo() + ", ubicacion=" + ubicacion + ", descripcion=" + descripcion + ", unidad="
+				+ unidad.getId() + ", estado=" + estado + "]";
 	}
 
 }

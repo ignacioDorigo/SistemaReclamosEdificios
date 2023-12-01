@@ -128,8 +128,9 @@ public class Edificio {
 		return new EdificioView(codigo, nombre, direccion);
 	}
 
+	@Override
 	public String toString() {
-		String palabra = "CODIGO: " + codigo + " , NOMBRE: " + nombre + " , DIRECCION: " + direccion;
-		return palabra;
+		return "Edificio [codigo=" + codigo + ", nombre=" + nombre + ", direccion=" + direccion + "]";
 	}
+
 }

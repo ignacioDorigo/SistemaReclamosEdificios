@@ -75,8 +75,10 @@ public class Imagen {
 		return new ImagenView(numero, direccion, tipo);
 	}
 
+	@Override
 	public String toString() {
-		String palabra = "NUMERO: " + numero + " , DIRECCION: " + direccion + " , TIPO: " + tipo;
-		return palabra;
+		return "Imagen [numero=" + numero + ", direccion=" + direccion + ", tipo=" + tipo + ", reclamo="
+				+ reclamo.getNumero() + "]";
 	}
+
 }
