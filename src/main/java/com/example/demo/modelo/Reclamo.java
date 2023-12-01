@@ -34,11 +34,11 @@ public class Reclamo {
 	@Column(name = "idreclamo")
 	private int numero;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "documento")
 	private Persona usuario;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "codigo")
 	private Edificio edificio;
 
@@ -48,7 +48,7 @@ public class Reclamo {
 	@Column(length = 1000)
 	private String descripcion;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "identificador")
 	private Unidad unidad;
 

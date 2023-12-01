@@ -291,6 +291,12 @@ public class Controlador {
 		try {
 			Persona persona = buscarPersona(documento);
 			if (persona != null) {
+				List<Reclamo> reclamos = reclamoRepository.findAll();
+				for (Reclamo r : reclamos) {
+					if (r.getUsuario().getDocumento().equals(documento)) {
+						reclamoRepository.deleteById(r.getNumero());
+					}
+				}
 				personaRepository.deleteById(documento);
 				System.out.println("Persona eliminada");
 			}
@@ -371,9 +377,13 @@ public class Controlador {
 			String descripcion) throws EdificioException, UnidadException, PersonaException {
 		try {
 			Edificio edificio = buscarEdificio(codigo);
+			System.out.println(edificio);
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
+			System.out.println(unidad);
 			Persona persona = buscarPersona(documento);
+			System.out.println(persona);
 			if (persona == null) {
+				System.out.println("NO SE AGREGO EL RECLAMO PORQUE LA PERSONA NO EXISTE");
 				return -1;
 			} else if (esDuenio(unidad.getDuenios(), persona) || esInquilino(unidad.getInquilinos(), persona)) {
 				// si entra aca es duenio,inquilino o ambos
@@ -382,6 +392,8 @@ public class Controlador {
 				reclamoRepository.save(reclamo);
 				System.out.println("Reclamo Agregado");
 				return reclamo.getNumero();
+			} else {
+				System.out.println("NO SE AGREGO EL RECLAMO PORQUE LA PERSONA NO ES DUENIO  O INQUILINO");
 			}
 
 		} catch (Exception e) {

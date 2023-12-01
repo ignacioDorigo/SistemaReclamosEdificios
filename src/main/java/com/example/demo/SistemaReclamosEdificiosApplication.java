@@ -119,7 +119,7 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 
 			} else if (opcion == 14) {
 //				8)
-				int codigoEdificio = 1;
+				int codigoEdificio = 2;
 				String piso = "10";
 				String numero = "6";
 				String documento = "DNI42411691";
@@ -200,10 +200,10 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 
 			} else if (opcion == 26) {
 //				20)
-				int codigoEdificio = 1;
+				int codigoEdificio = 2;
 				String pisoUnidad = "10";
 				String numeroUnidad = "6";
-				String documento = "DNI30314545";
+				String documento = "DNI42411691";
 				String ubicacionReclamo = "cocina";
 				String descripcionReclamo = "gotera en el techo";
 				controlador.agregarReclamo(codigoEdificio, pisoUnidad, numeroUnidad, documento, ubicacionReclamo,
