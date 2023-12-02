@@ -8,6 +8,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.exceptions.EdificioException;
 import com.example.demo.exceptions.PersonaException;
@@ -30,7 +33,8 @@ import com.example.demo.views.PersonaView;
 import com.example.demo.views.ReclamoView;
 import com.example.demo.views.UnidadView;
 
-@Controller
+@RestController
+@RequestMapping("/inicio")
 public class Controlador {
 
 	@Autowired
@@ -297,6 +301,7 @@ public class Controlador {
 						reclamoRepository.deleteById(r.getNumero());
 					}
 				}
+
 				personaRepository.deleteById(documento);
 				System.out.println("Persona eliminada");
 			}
@@ -584,6 +589,19 @@ public class Controlador {
 			return true;
 		}
 		return false;
+	}
+
+	// falta rest de esto
+	@GetMapping("/login/{mail}/{password}")
+	public boolean login(@PathVariable String mail, @PathVariable String password) {
+		List<Persona> personas = personaRepository.findAll();
+		for (Persona persona : personas) {
+			if (persona.getMail().equals(mail) && persona.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		return false;
+
 	}
 
 }

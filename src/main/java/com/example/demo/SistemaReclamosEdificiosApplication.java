@@ -330,7 +330,6 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 		System.out.println("27) Agregar Imagen a Reclamo");
 		System.out.println("28) Cambiar estado reclamo");
 		System.out.println(" -1 PARA TERMINAR");
-
 	}
 
 }
