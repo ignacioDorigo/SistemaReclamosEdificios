@@ -31,8 +31,8 @@ public class Persona {
 	public Persona(String documento, String nombre, String mail, String password) {
 		this.documento = documento;
 		this.nombre = nombre;
-		this.mail = mail;
-		this.password = password;
+		this.mail = crearMail(documento, nombre); // funcion;
+		this.password = documento;
 	}
 
 	public void cambiarPassword(String password) {
@@ -79,6 +79,18 @@ public class Persona {
 	public String toString() {
 		return "Persona [documento=" + documento + ", nombre=" + nombre + ", mail=" + mail + ", password=" + password
 				+ "]";
+	}
+
+	public String crearMail(String documento, String nombre) {
+		String mailNuevo = "";
+		for (int i = 0; i < 3; i++) {
+			mailNuevo = mailNuevo + documento.charAt(i);
+		}
+		for (int i = 0; i < 3; i++) {
+			mailNuevo = mailNuevo + nombre.charAt(i);
+		}
+		mailNuevo = mailNuevo + "@gmail.com";
+		return mailNuevo;
 	}
 
 }

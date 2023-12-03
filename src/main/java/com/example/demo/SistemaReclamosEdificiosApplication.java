@@ -167,8 +167,8 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 
 			} else if (opcion == 20) {
 //				14)
-				String documento = "DNI42411691";
-				String nombre = "DORIGO, IGNACIO TOMAS";
+				String documento = "DNI44340534";
+				String nombre = "POTTI, FACUNDO";
 				controlador.agregarPersona(documento, nombre);
 
 			} else if (opcion == 21) {

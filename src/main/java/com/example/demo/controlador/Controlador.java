@@ -591,7 +591,7 @@ public class Controlador {
 		return false;
 	}
 
-	// falta rest de esto
+	// falta rest de esto //listo rest
 	@GetMapping("/login/{mail}/{password}")
 	public boolean login(@PathVariable String mail, @PathVariable String password) {
 		List<Persona> personas = personaRepository.findAll();
