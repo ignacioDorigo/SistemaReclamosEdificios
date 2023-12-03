@@ -173,7 +173,7 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 
 			} else if (opcion == 21) {
 //				15)
-				String documento = "DNI42411691";
+				String documento = "DNI44340534";
 				controlador.eliminarPersona(documento);
 
 			} else if (opcion == 22) {

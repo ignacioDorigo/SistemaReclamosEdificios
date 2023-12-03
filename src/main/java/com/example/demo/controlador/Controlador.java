@@ -276,7 +276,7 @@ public class Controlador {
 	// 14 Listo REST
 	public void agregarPersona(String documento, String nombre) throws PersonaException {
 		try {
-			Persona persona = new Persona(documento, nombre, null, null);
+			Persona persona = new Persona(documento, nombre, null, null, null);
 			Persona posible = buscarPersona(documento);
 			if (posible == null) {
 				personaRepository.save(persona);
@@ -592,16 +592,18 @@ public class Controlador {
 	}
 
 	// falta rest de esto //listo rest
-	@GetMapping("/login/{mail}/{password}")
-	public boolean login(@PathVariable String mail, @PathVariable String password) {
+	@GetMapping("/login/{mail}/{password}/{admin}")
+	public boolean login(@PathVariable String mail, @PathVariable String password, @PathVariable Integer admin) {
 		List<Persona> personas = personaRepository.findAll();
 		for (Persona persona : personas) {
-			if (persona.getMail().equals(mail) && persona.getPassword().equals(password)) {
+			if (persona.getMail().equals(mail) && persona.getPassword().equals(password)
+					&& admin == persona.getAdmin()) {
+				System.out.println("TODOS LOS DATOS SON CORRECTOS");
 				return true;
 			}
 		}
+		System.out.println("Hay algun dato incorrecto");
 		return false;
-
 	}
 
 }

@@ -24,15 +24,19 @@ public class Persona {
 	@Column(name = "contrasenia")
 	private String password;
 
+	@Basic
+	private Integer admin;
+
 	public Persona() {
 
 	}
 
-	public Persona(String documento, String nombre, String mail, String password) {
+	public Persona(String documento, String nombre, String mail, String password, Integer admin) {
 		this.documento = documento;
 		this.nombre = nombre;
 		this.mail = crearMail(documento, nombre); // funcion;
 		this.password = documento;
+		this.admin = 0;
 	}
 
 	public void cambiarPassword(String password) {
@@ -75,10 +79,18 @@ public class Persona {
 		return new PersonaView(documento, nombre);
 	}
 
+	public Integer getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Integer admin) {
+		this.admin = admin;
+	}
+
 	@Override
 	public String toString() {
 		return "Persona [documento=" + documento + ", nombre=" + nombre + ", mail=" + mail + ", password=" + password
-				+ "]";
+				+ ", admin=" + admin + "]";
 	}
 
 	public String crearMail(String documento, String nombre) {
