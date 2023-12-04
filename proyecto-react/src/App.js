@@ -8,13 +8,16 @@ import UnidadesPorEdificio from './components/UnidadesPorEdificio';
 import HabilitadosPorEdificio from './components/HabilitadosPorEdificio';
 import DueniosPorEdificio from './components/DueniosPorEdificio';
 import HabitantesPorEdificio from './components/HabitantesPorEdificio';
+import DueniosPorUnidad from './components/DueniosPorUnidad';
+import ReclamosPorEdificio from './components/ReclamosPorEdificio';
+import ReclamosPorUnidad from './components/ReclamosPorUnidad';
 
 
 
 function App() {
   return (
     <div className="App">
-      <HabitantesPorEdificio/>
+      <ReclamosPorUnidad/>
     </div>
   );
 }
