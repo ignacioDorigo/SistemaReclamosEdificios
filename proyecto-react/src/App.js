@@ -14,13 +14,21 @@ import ReclamosPorUnidad from './components/ReclamosPorUnidad';
 import ReclamosPorNumero from './components/ReclamosPorNumero';
 import ReclamosPorPersona from './components/ReclamosPorPersona';
 import AgregarReclamo from './components/AgregarReclamo';
+import EliminarPersona from './components/EliminarPersona';
+import CambiarEstadoReclamo from './components/CambiarEstadoReclamo';
+import TransferirUnidad from './components/TransferirUnidad';
+import AgregarInquilinoUnidad from './components/AgregarInquilinoUnidad';
+import AlquilarUnidad from './components/AlquilarUnidad';
+import HabitarUnidad from './components/HabitarUnidad';
+import BuscarImagenesPorNumeroReclamo from './components/BuscarImagenesPorNumeroReclamo';
+import AgregarImagenAReclamo from './components/AgregarImagenReclamo';
 
-
+ 
 
 function App() {
   return (
     <div className="App">
-      <ReclamosPorNumero/>
+      <AgregarImagenAReclamo/>
     </div>
   );
 }

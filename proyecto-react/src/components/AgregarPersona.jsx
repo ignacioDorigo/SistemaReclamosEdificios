@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Swal from 'sweetalert2'
+ 
 function AgregarPersona() {
   const [documento, setDocumento] = useState('');
   const [nombre, setNombre] = useState('');
@@ -25,27 +27,42 @@ function AgregarPersona() {
       })
       .then(() => {
         // Manejar la respuesta del servidor si es necesario
-        console.log('Persona agregada correctamente');
+        Swal.fire({
+          title: '<strong>Registro Exitoso</strong>',
+          html: '<i>La persona <strong>' + nombre + '</strong> fue registrado con exito</i>',
+          icon: 'success',
+          timer: 2000
+        })
         // Puedes realizar alguna acción adicional después de agregar la persona
       })
       .catch(error => console.error('Error al agregar persona:', error));
   };
 
   return (
-    <div>
-      <h2>Agregar Persona</h2>
+    <div className="container mt-4 rounded p-4">
+      <h2 className="mb-4">Agregar Persona</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Documento:
-          <input type="text" value={documento} onChange={(e) => setDocumento(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Nombre:
-          <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
-        </label>
-        <br />
-        <button type="submit">Agregar Persona</button>
+        <div className="mb-3">
+          <label htmlFor="documentoInput" className="form-label">Documento:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="documentoInput"
+            value={documento}
+            onChange={(e) => setDocumento(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="nombreInput" className="form-label">Nombre:</label>
+          <input
+            type="text"
+            className="form-control"
+            id="nombreInput"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">Agregar Persona</button>
       </form>
     </div>
   );

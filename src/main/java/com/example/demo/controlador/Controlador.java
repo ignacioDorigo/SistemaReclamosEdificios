@@ -189,19 +189,32 @@ public class Controlador {
 	}
 
 	// 9 Listo REST
-	public void agregarDuenioUnidad(int codigo, String piso, String numero, String documento)
-			throws UnidadException, PersonaException {
-		try {
-			Unidad unidad = buscarUnidad(codigo, piso, numero);
-			Persona persona = buscarPersona(documento);
-			unidad.agregarDuenio(persona);
-			unidadRepository.save(unidad);
-			System.out.println("Duenio agregado a la unidad");
-		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
-		}
+    public void agregarDuenioUnidad(int codigo, String piso, String numero, String documento)
+            throws UnidadException, PersonaException {
+        try {
+            Unidad unidad = buscarUnidad(codigo, piso, numero);
+            Persona persona = buscarPersona(documento);
+            if(unidad!=null && persona!=null) {
+                List<Persona> duenios = unidad.getDuenios();
+                boolean yaEsta = false;
+                for(Persona duenio : duenios) {
+                    if(duenio.getDocumento().equals(documento)) {
+                        yaEsta = true;
+                        break;
+                    }
+                }
+                if(yaEsta==false) {
+                    unidad.agregarDuenio(persona);
+                    unidadRepository.save(unidad);
+                    System.out.println("Duenio agregado a la unidad");
+                }
+            }
 
-	}
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+    }
 
 	// 10 Listo REST
 	public void alquilarUnidad(int codigo, String piso, String numero, String documento)
@@ -225,20 +238,36 @@ public class Controlador {
 	}
 
 	// 11 Listo REST
-	public void agregarInquilinoUnidad(int codigo, String piso, String numero, String documento)
-			throws UnidadException, PersonaException {
-		try {
-			Unidad unidad = buscarUnidad(codigo, piso, numero);
-			Persona persona = buscarPersona(documento);
-			if (persona != null && unidad != null && unidad.estaHabitado() != false) {// considerar casos repetidos
-				unidad.agregarInquilino(persona);
-				unidadRepository.save(unidad);
-				System.out.println("Inquilino agregado");
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
+    public void agregarInquilinoUnidad(int codigo, String piso, String numero, String documento)
+            throws UnidadException, PersonaException {
+        try {
+            Unidad unidad = buscarUnidad(codigo, piso, numero);
+            System.out.println(unidad);
+            Persona persona = buscarPersona(documento);
+            System.out.println(persona);
+            if (persona != null && unidad != null) {
+                if (unidad.estaHabitado() == false) {
+                    unidad.habitar();
+                }
+                List<Persona> inquilinos = unidad.getInquilinos();
+                boolean yaEsta = false;
+                for (Persona inquilino : inquilinos) {
+                    if (inquilino.getDocumento().equals(documento)) {
+                        yaEsta = true;
+                        break;
+                    }
+                }
+                if (yaEsta == false) {
+                    unidad.agregarInquilino(persona);
+                    unidadRepository.save(unidad);
+                    System.out.println("Inquilino agregado");
+                }
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 	// 12 Listo REST
 	public void liberarUnidad(int codigo, String piso, String numero) throws UnidadException {
