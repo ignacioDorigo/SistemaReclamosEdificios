@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
+
 
 function AgregarReclamo() {
   const [codigo, setCodigo] = useState('');
@@ -10,6 +12,16 @@ function AgregarReclamo() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validar que todos los campos estén completos
+    if (!codigo || !piso || !numero || !documento || !ubicacion || !descripcion) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Por favor, completa todos los campos.',
+        icon: 'error',
+      });
+      return;
+    }
 
     // Realizar la solicitud POST
     fetch('http://localhost:8080/reclamos/agregarReclamo', {
@@ -28,12 +40,21 @@ function AgregarReclamo() {
     })
       .then(response => {
         if (!response.ok) {
-          throw new Error('Error al agregar reclamo');
+          Swal.fire({
+            title: 'Error',
+            text: `Hubo un error al agregar el reclamo`,
+            icon: 'error',
+          });
         }
       })
       .then(() => {
         // Manejar la respuesta del servidor si es necesario
-        console.log('Reclamo agregado correctamente');
+        Swal.fire({
+          title: '<strong>Registro Exitoso</strong>',
+          html: '<i>El Reclamo fue registrado con éxito</i>',
+          icon: 'success',
+          timer: 2000
+        });
         // Puedes realizar alguna acción adicional después de agregar el reclamo
       })
       .catch(error => console.error('Error al agregar reclamo:', error));

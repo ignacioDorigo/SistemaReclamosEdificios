@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const AlquilarUnidad = () => {
   const [codigo, setCodigo] = useState('');
@@ -7,6 +8,16 @@ const AlquilarUnidad = () => {
   const [documento, setDocumento] = useState('');
 
   const handleAlquilarUnidad = async () => {
+    // Validar que todos los campos estén completos
+    if (!codigo || !piso || !numero || !documento) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Todos los campos son obligatorios',
+        icon: 'error',
+      });
+      return;
+    }
+
     try {
       const response = await fetch('http://localhost:8080/unidades/alquilarUnidad', {
         method: 'POST',
@@ -18,13 +29,28 @@ const AlquilarUnidad = () => {
 
       if (response.ok) {
         // La solicitud fue exitosa
-        console.log('Unidad alquilada exitosamente');
+        Swal.fire({
+          title: '<strong>Alquiler Exitoso</strong>',
+          html: '<i>Unidad alquilada exitosamente</i>',
+          icon: 'success',
+          timer: 2000
+        });
       } else {
         // La solicitud falló
-        console.error('Error al alquilar la unidad');
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al alquilar la unidad',
+          icon: 'error',
+        });
       }
     } catch (error) {
       console.error('Error en la solicitud:', error);
+      // Mostrar un mensaje de error genérico
+      Swal.fire({
+        title: 'Error',
+        text: 'Hubo un error al procesar la solicitud',
+        icon: 'error',
+      });
     }
   };
 

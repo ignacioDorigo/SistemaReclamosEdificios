@@ -29,6 +29,27 @@ function App() {
   return (
     <div className="App">
       <AgregarImagenAReclamo/>
+      <AgregarInquilinoUnidad/>
+      <AgregarPersona/>
+      <AgregarReclamo/>
+      <AlquilarUnidad/>
+      <BuscarImagenesPorNumeroReclamo/>
+      <CambiarEstadoReclamo/>
+      <DueniosPorEdificio/>
+      <DueniosPorUnidad/>
+      <Edificios/>
+      <EliminarPersona/>
+      <HabilitadosPorEdificio/>
+      <HabitantesPorEdificio/>
+      <HabitarUnidad/>
+      <Login/>
+      <Reclamos/>
+      <ReclamosPorEdificio/>
+      <ReclamosPorNumero/>
+      <ReclamosPorPersona/>
+      <ReclamosPorUnidad/>
+      <TransferirUnidad/>
+      <UnidadesPorEdificio/>
     </div>
   );
 }

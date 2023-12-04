@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const AgregarImagenAReclamo = () => {
   const [numero, setNumero] = useState('');
@@ -10,7 +11,11 @@ const AgregarImagenAReclamo = () => {
   const handleAgregarImagenAReclamo = async () => {
     // Validar que todos los campos estén completos
     if (!numero || !direccion || !tipo || !documento) {
-      alert('Todos los campos son obligatorios');
+      Swal.fire({
+        title: 'Error',
+        text: 'Todos los campos son obligatorios',
+        icon: 'error',
+      });
       return;
     }
 
@@ -25,10 +30,19 @@ const AgregarImagenAReclamo = () => {
 
       if (response.ok) {
         // La solicitud fue exitosa
-        console.log('Imagen agregada al reclamo exitosamente');
+        Swal.fire({
+          title: '<strong>Registro Exitoso</strong>',
+          html: '<i>La Imagen fue agregada con éxito</i>',
+          icon: 'success',
+          timer: 2000
+        });
       } else {
         // La solicitud falló
-        console.error('Error al agregar imagen al reclamo');
+        Swal.fire({
+          title: 'Error',
+          text: 'Por favor, verificar todos los campos.',
+          icon: 'error',
+        });
       }
     } catch (error) {
       console.error('Error en la solicitud:', error);
@@ -36,29 +50,40 @@ const AgregarImagenAReclamo = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="text-center">Agregar Imagen a Reclamo</h2>
-      <form className="d-flex flex-column align-items-center">
-        <div className="form-group">
-          <label>Número de Reclamo:</label>
-          <input type="text" className="form-control" value={numero} onChange={(e) => setNumero(e.target.value)} />
+    <div className="container">
+      <div className="card text-center">
+        <div className="card-header">
+          GESTION DE EDIFICIOS
         </div>
-        <div className="form-group">
-          <label>Dirección de la Imagen:</label>
-          <input type="text" className="form-control" value={direccion} onChange={(e) => setDireccion(e.target.value)} />
+
+        <div className="card-body mb-2">
+          <div class="input-group flex-nowrap mb-2">
+            <span class="input-group-text" id="addon-wrapping">Número de Reclamo</span>
+            <input type="text" class="form-control" placeholder="Número de Reclamo" aria-label="Número de Reclamo" aria-describedby="addon-wrapping" value={numero} onChange={(e) => setNumero(e.target.value)}/>
+          </div>
+
+          <div class="input-group flex-nowrap mb-2">
+            <span class="input-group-text" id="addon-wrapping">Dirección de la Imagen</span>
+            <input type="text" class="form-control" placeholder="Dirección de la Imagen" aria-label="Dirección de la Imagen" aria-describedby="addon-wrapping" value={direccion} onChange={(e) => setDireccion(e.target.value)}/>
+          </div>
+
+          <div class="input-group flex-nowrap mb-2">
+            <span class="input-group-text" id="addon-wrapping">Tipo de Imagen</span>
+            <input type="text" class="form-control" placeholder="Tipo de Imagen" aria-label="Tipo de Imagen" aria-describedby="addon-wrapping" value={tipo} onChange={(e) => setTipo(e.target.value)}/>
+          </div>
+
+          <div class="input-group flex-nowrap mb-2">
+            <span class="input-group-text" id="addon-wrapping">Documento</span>
+            <input type="text" class="form-control" placeholder="Documento" aria-label="Documento" aria-describedby="addon-wrapping" value={documento} onChange={(e) => setDocumento(e.target.value)}/>
+          </div>
         </div>
-        <div className="form-group">
-          <label>Tipo de Imagen:</label>
-          <input type="text" className="form-control" value={tipo} onChange={(e) => setTipo(e.target.value)} />
+
+        <div class="card-footer text-muted ">
+          <button type="button" className="btn btn-primary mb-3" onClick={handleAgregarImagenAReclamo}>
+              Agregar Imagen a Reclamo
+            </button>
         </div>
-        <div className="form-group">
-          <label>Documento:</label>
-          <input type="text" className="form-control" value={documento} onChange={(e) => setDocumento(e.target.value)} />
-        </div>
-        <button type="button" className="btn btn-primary mb-3" onClick={handleAgregarImagenAReclamo}>
-          Agregar Imagen a Reclamo
-        </button>
-      </form>
+      </div>
     </div>
   );
 };

@@ -7,6 +7,17 @@ function EliminarPersona() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Verificar si el campo está vacío
+    if (!documento) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Por favor, ingresa un documento antes de eliminar.',
+        icon: 'error',
+      });
+      return;
+    }
+
+    // Confirmar eliminación después de la verificación
     const confirmarEliminacion = await Swal.fire({
       title: "¿Estás seguro?",
       text: "No podrás revertir esto",
@@ -21,6 +32,7 @@ function EliminarPersona() {
       return;
     }
 
+    // Intentar eliminar la persona
     try {
       const response = await fetch(`http://localhost:8080/personas/eliminarPersona?documento=${documento}`, {
         method: 'DELETE',

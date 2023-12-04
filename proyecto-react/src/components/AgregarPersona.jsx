@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
-import Swal from 'sweetalert2'
- 
 function AgregarPersona() {
   const [documento, setDocumento] = useState('');
   const [nombre, setNombre] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validar que ambos campos estén llenos
+    if (!documento || !nombre) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Por favor, completa todos los campos.',
+        icon: 'error',
+      });
+      return;
+    }
 
     // Realizar la solicitud POST
     fetch('http://localhost:8080/personas/agregarPersona', {
@@ -29,13 +38,21 @@ function AgregarPersona() {
         // Manejar la respuesta del servidor si es necesario
         Swal.fire({
           title: '<strong>Registro Exitoso</strong>',
-          html: '<i>La persona <strong>' + nombre + '</strong> fue registrado con exito</i>',
+          html: '<i>La persona <strong>' + nombre + '</strong> fue registrado con éxito</i>',
           icon: 'success',
           timer: 2000
-        })
+        });
         // Puedes realizar alguna acción adicional después de agregar la persona
       })
-      .catch(error => console.error('Error al agregar persona:', error));
+      .catch(error => {
+        console.error('Error al agregar persona:', error);
+        // Muestra un mensaje de error
+        Swal.fire({
+          title: 'Error',
+          text: `Hubo un error al agregar la persona: ${error.message}`,
+          icon: 'error',
+        });
+      });
   };
 
   return (

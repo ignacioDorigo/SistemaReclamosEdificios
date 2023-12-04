@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import EliminarPersona from './EliminarPersona';
+import AgregarPersona from './AgregarPersona';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -47,11 +49,17 @@ const Login = () => {
         <div>
           <h1>¡Bienvenido, Administrador!</h1>
           {/* Renderizar el diseño del administrador aquí */}
+
         </div>
       ) : isLoggedIn ? (
         <div>
           <h1>¡Bienvenido, Usuario Normal!</h1>
           {/* Renderizar el diseño del usuario normal aquí */}
+          {/* ReclamoPorPersona */}
+          {/* CrearReclamo */}
+          {/* AgregarImagenAReclamo */}
+
+          
         </div>
       ) : (
         <div>
