@@ -60,7 +60,7 @@ const TransferirUnidad = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Código"
+              placeholder="Codigo Edificio"
               aria-label="Código"
               aria-describedby="addon-wrapping"
               value={codigo}

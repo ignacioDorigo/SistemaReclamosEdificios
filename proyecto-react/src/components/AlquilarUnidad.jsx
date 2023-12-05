@@ -64,8 +64,8 @@ const AlquilarUnidad = () => {
         <div className="card-body">
 
           <div class="input-group flex-nowrap mb-2">
-            <span class="input-group-text" id="addon-wrapping">Código</span>
-            <input type="text" class="form-control" placeholder="Código" aria-label="Código" aria-describedby="addon-wrapping" value={codigo} onChange={(e) => setCodigo(e.target.value)}/>
+            <span class="input-group-text" id="addon-wrapping">Codigo Edificio</span>
+            <input type="text" class="form-control" placeholder="Codigo Edificio" aria-label="Código" aria-describedby="addon-wrapping" value={codigo} onChange={(e) => setCodigo(e.target.value)}/>
           </div>
 
           <div class="input-group flex-nowrap mb-2">

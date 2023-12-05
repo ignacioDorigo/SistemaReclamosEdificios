@@ -35,7 +35,7 @@ const CambiarEstadoReclamo = () => {
         if (data) {
           Swal.fire({
             title: '<strong>Registro Exitoso</strong>',
-            html: '<i>El inquilino fue agregado con exito</i>',
+            html: '<i>Cambio realizado con exito</i>',
             icon: 'success',
             timer: 2000
           })

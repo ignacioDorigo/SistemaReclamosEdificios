@@ -73,8 +73,8 @@ function AgregarReclamo() {
           <form onSubmit={handleSubmit}>
 
             <div class="input-group flex-nowrap mb-2">
-              <span class="input-group-text" id="addon-wrapping">Codigo</span>
-              <input type="text" class="form-control" placeholder="Codigo" aria-label="Codigo" aria-describedby="addon-wrapping" id="codigoInput" value={codigo} onChange={(e) => setCodigo(e.target.value)}/>
+              <span class="input-group-text" id="addon-wrapping">Codigo de Edificio</span>
+              <input type="text" class="form-control" placeholder="Codigo de Edificio" aria-label="Codigo" aria-describedby="addon-wrapping" id="codigoInput" value={codigo} onChange={(e) => setCodigo(e.target.value)}/>
             </div>
 
             <div class="input-group flex-nowrap mb-2">
