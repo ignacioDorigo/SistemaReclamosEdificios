@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const HabitarUnidad = () => {
   const [codigo, setCodigo] = useState('');
@@ -9,7 +10,12 @@ const HabitarUnidad = () => {
   const handleHabitarUnidad = async () => {
     // Validar que todos los campos estén completos
     if (!codigo || !piso || !numero) {
-      alert('Todos los campos son obligatorios');
+      // Mostrar una alerta usando SweetAlert2
+      Swal.fire({
+        title: 'Error',
+        text: 'Todos los campos son obligatorios',
+        icon: 'error',
+      });
       return;
     }
 
@@ -23,7 +29,12 @@ const HabitarUnidad = () => {
 
       if (response.ok) {
         // La solicitud fue exitosa
-        console.log('Unidad habitada exitosamente');
+        Swal.fire({
+          title: '<strong>Registro Exitoso</strong>',
+          html: '<i>La unidad se habilitó</i>',
+          icon: 'success',
+          timer: 2000
+        });
       } else {
         // La solicitud falló
         console.error('Error al habitar la unidad');
@@ -34,25 +45,65 @@ const HabitarUnidad = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h2 className="text-center">Habitar Unidad</h2>
-      <form className="d-flex flex-column align-items-center">
-        <div className="form-group">
-          <label>Código:</label>
-          <input type="text" className="form-control" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
+    <div className="container">
+      <div className="card text-center">
+        <div className="card-header">
+          <strong>HABITAR UNIDAD</strong>
         </div>
-        <div className="form-group">
-          <label>Piso:</label>
-          <input type="text" className="form-control" value={piso} onChange={(e) => setPiso(e.target.value)} />
+
+        <div className="card-body">
+          <div className="input-group flex-nowrap mb-2">
+            <span className="input-group-text" id="addon-wrapping">
+              Código
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Código"
+              aria-label="Código"
+              aria-describedby="addon-wrapping"
+              value={codigo}
+              onChange={(e) => setCodigo(e.target.value)}
+            />
+          </div>
+
+          <div className="input-group flex-nowrap mb-2">
+            <span className="input-group-text" id="addon-wrapping">
+              Piso
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Piso"
+              aria-label="Piso"
+              aria-describedby="addon-wrapping"
+              value={piso}
+              onChange={(e) => setPiso(e.target.value)}
+            />
+          </div>
+
+          <div className="input-group flex-nowrap mb-2">
+            <span className="input-group-text" id="addon-wrapping">
+              Número
+            </span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Número"
+              aria-label="Número"
+              aria-describedby="addon-wrapping"
+              value={numero}
+              onChange={(e) => setNumero(e.target.value)}
+            />
+          </div>
         </div>
-        <div className="form-group">
-          <label>Número:</label>
-          <input type="text" className="form-control" value={numero} onChange={(e) => setNumero(e.target.value)} />
+
+        <div className="card-footer text-muted">
+          <button type="button" className="btn btn-success mb-3" onClick={handleHabitarUnidad}>
+            Habitar Unidad
+          </button>
         </div>
-        <button type="button" className="btn btn-success mb-3" onClick={handleHabitarUnidad}>
-          Habitar Unidad
-        </button>
-      </form>
+      </div>
     </div>
   );
 };

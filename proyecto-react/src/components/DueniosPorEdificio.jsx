@@ -25,11 +25,11 @@ function DueniosPorEdificio() {
                     GESTION DE DUENIOS POR EDIFICIO
                 </div>
                 <div className="card-body">
-                    <input
-                        type="number"
-                        value={numeroEdificio}
-                        onChange={handleNumeroEdificioChange}
-                    />
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Numero</span>
+                        <input type="number" class="form-control" placeholder="Numero" aria-label="Numero" aria-describedby="basic-addon1" value={numeroEdificio} onChange={handleNumeroEdificioChange}/>
+                    </div>
 
                     <table className="table table-striped">
                         <thead>

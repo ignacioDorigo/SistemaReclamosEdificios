@@ -1,83 +1,100 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2'
 
-function CambiarEstadoReclamo() {
+const CambiarEstadoReclamo = () => {
+  // Estado local para almacenar el número y estado del reclamo
   const [numero, setNumero] = useState('');
-  const [estado, setEstado] = useState('');
+  const [estado, setEstado] = useState('abierto'); // Valor predeterminado, puedes establecerlo según tus necesidades
 
+  // Lista predefinida de estados permitidos
+  const estadosPermitidos = ['nuevo', 'abierto', 'enProceso', 'desestimado', 'anulado', 'terminado'];
+
+  // Manejar el cambio en el select del estado
   const handleEstadoChange = (e) => {
-    setEstado(e.target.value);
+    const nuevoEstado = e.target.value;
+
+    // Verificar si el nuevo estado es uno de los permitidos
+    if (estadosPermitidos.includes(nuevoEstado)) {
+      setEstado(nuevoEstado);
+    } else {
+      console.error('Error: Estado no válido');
+    }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  // Manejar el clic en el botón para cambiar el estado
+  const handleClick = async () => {
     try {
+      // Hacer la solicitud HTTP usando fetch
       const response = await fetch(`http://localhost:8080/reclamos/cambiarEstado?numero=${numero}&estado=${estado}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(`Error al cambiar el estado del reclamo: ${errorData.message}`);
-      }
+      // Verificar si la solicitud fue exitosa
+      if (response.ok) {
+        const data = await response.json();
+        if (data) {
+          Swal.fire({
+            title: '<strong>Registro Exitoso</strong>',
+            html: '<i>El inquilino fue agregado con exito</i>',
+            icon: 'success',
+            timer: 2000
+          })
 
-      Swal.fire({
-        title: '<strong>Cambio Exitoso</strong>',
-        html: '<i>El registro cambio con exito</i>',
-        icon: 'success',
-        timer: 2000
-      })
-      // Puedes realizar alguna acción adicional después de cambiar el estado del reclamo si es necesario
+        } else {
+          Swal.fire({
+            title: '<strong>Reclamo no encontrado</strong>',
+            html: '<i>No se encontro</i>',
+            icon: 'error',
+            timer: 2000
+          })
+        }
+      } else {
+        console.error('Error al cambiar el estado del reclamo');
+      }
     } catch (error) {
-      console.error(error.message);
+      console.error('Error de red:', error);
     }
   };
 
   return (
     <div className="container">
       <div className="card text-center">
+
         <div className="card-header">
-          <strong>CAMBIAR ESTADO DEL RECLAMO</strong>
+          <strong>CAMBIAR ESTADO DE RECLAMO</strong>
         </div>
 
         <div className="card-body">
-          <form onSubmit={handleSubmit}>
 
-            <div class="input-group flex-nowrap mb-2">
-              <span class="input-group-text" id="addon-wrapping">Número del Reclamo</span>
-              <input type="text" class="form-control" placeholder="Número del Reclamo" aria-label="Número del Reclamo" aria-describedby="addon-wrapping" id="numeroInput" value={numero} onChange={(e) => setNumero(e.target.value)}/>
-            </div>
+          <div class="input-group flex-nowrap mb-2">
+            <span class="input-group-text" id="addon-wrapping">Número del reclamo</span>
+            <input type="number" class="form-control" placeholder="Número del reclamo" aria-label="Número del reclamo" aria-describedby="addon-wrapping" value={numero} onChange={(e) => setNumero(e.target.valueAsNumber)}/>
+          </div>
 
-            <div className="input-group flex-nowrap mb-2">
-              <span class="input-group-text" id="addon-wrapping">Nuevo Estado</span>
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                id="estadoInput"
-                value={estado}
-                onChange={handleEstadoChange}
-              >
-                <option value="">Selecciona un estado</option>
-                <option value="nuevo">Nuevo</option>
-                <option value="abierto">Abierto</option>
-                <option value="enProceso">En Proceso</option>
-                <option value="desestimado">Desestimado</option>
-                <option value="anulado">Anulado</option>
-                <option value="terminado">Terminado</option>
-              </select>
-            </div>
+          <div class="input-group flex-nowrap mb-2">
+            <span class="input-group-text" id="addon-wrapping">Estado</span>
+            <select class="form-select" aria-label="Default select example" value={estado} onChange={handleEstadoChange}>
+              {estadosPermitidos.map((estado) => (
+                <option key={estado} value={estado}>
+                  {estado}
+                </option>
+              ))}
+            </select>
+          </div>
 
-            <button type="submit" className="btn btn-primary">Cambiar Estado del Reclamo</button>
-          </form>
+        
+          
+        </div>
+
+        <div class="card-footer text-muted">
+          <button type="button" className="btn btn-primary" onClick={handleClick}>
+            Cambiar Estado
+          </button>
         </div>
 
       </div>
     </div>
   );
-}
+};
 
 export default CambiarEstadoReclamo;
