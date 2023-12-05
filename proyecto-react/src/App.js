@@ -356,55 +356,66 @@ function App() {
   const renderNormalUserContent = () => {
     return (
       <div className="container ">
-        <h1>Bienvenido usuario normal</h1>
-        <div className="btn-group" role="group">
-          <button
-            type="button"
-            className={`btn ${currentView === 'agregarReclamo' ? 'btn-primary' : 'btn-secondary'}`}
-            onClick={() => setView('agregarReclamo')}
-          >
-            Agregar Reclamo
-          </button>
+        <div className="card text-center">
+          <div className="card-header">
+              <h1>Bienvenido usuario normal</h1>
+          </div>
 
-          <button
-            type="button"
-            className={`btn ${currentView === 'verMisReclamos' ? 'btn-primary' : 'btn-secondary'}`}
-            onClick={() => setView('verMisReclamos')}
-          >
-            Ver Mis Reclamos
-          </button>
+          <div className="card-body">
+            <div className="btn-group" role="group">
+              <button
+                type="button"
+                className={`btn ${currentView === 'agregarReclamo' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setView('agregarReclamo')}
+              >
+                Agregar Reclamo
+              </button>
 
-          <button
-            type="button"
-            className={`btn ${currentView === 'agregarImagenReclamo' ? 'btn-primary' : 'btn-secondary'}`}
-            onClick={() => setView('agregarImagenReclamo')}
-          >
-            Agregar Imagen a Reclamo
-          </button>
-        </div>
-        <div className="tab-content">
-          <div
-            className={`tab-pane fade ${currentView === 'agregarReclamo' ? 'show active' : ''}`}
-            id="pills-agregarReclamo"
-            role="tabpanel"
-          >
-            <AgregarReclamo />
+              <button
+                type="button"
+                className={`btn ${currentView === 'verMisReclamos' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setView('verMisReclamos')}
+              >
+                Ver Mis Reclamos
+              </button>
+
+              <button
+                type="button"
+                className={`btn ${currentView === 'agregarImagenReclamo' ? 'btn-primary' : 'btn-secondary'}`}
+                onClick={() => setView('agregarImagenReclamo')}
+              >
+                Agregar Imagen a Reclamo
+              </button>
+            </div>
           </div>
-          <div
-            className={`tab-pane fade ${currentView === 'verMisReclamos' ? 'show active' : ''}`}
-            id="pills-verMisReclamos"
-            role="tabpanel"
-          >
-            <ReclamosPorPersona />
+
+          <div class="card-footer text-muted">
+            <div className="tab-content">
+              <div
+                className={`tab-pane fade ${currentView === 'agregarReclamo' ? 'show active' : ''}`}
+                id="pills-agregarReclamo"
+                role="tabpanel"
+              >
+                <AgregarReclamo />
+              </div>
+              <div
+                className={`tab-pane fade ${currentView === 'verMisReclamos' ? 'show active' : ''}`}
+                id="pills-verMisReclamos"
+                role="tabpanel"
+              >
+                <ReclamosPorPersona />
+              </div>
+              <div
+                className={`tab-pane fade ${currentView === 'agregarImagenReclamo' ? 'show active' : ''}`}
+                id="pills-agregarImagenReclamo"
+                role="tabpanel"
+              >
+                <AgregarImagenAReclamo />
+              </div>
+              {/* Agrega más paneles según las opciones */}
+            </div>
           </div>
-          <div
-            className={`tab-pane fade ${currentView === 'agregarImagenReclamo' ? 'show active' : ''}`}
-            id="pills-agregarImagenReclamo"
-            role="tabpanel"
-          >
-            <AgregarImagenAReclamo />
-          </div>
-          {/* Agrega más paneles según las opciones */}
+          
         </div>
       </div>
     );
