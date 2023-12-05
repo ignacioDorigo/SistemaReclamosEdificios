@@ -23,15 +23,9 @@ function ReclamosPorEdificio() {
                     RECLAMOS POR EDIFICIO
                 </div>
                 <div className="card-body">
-                    <div className="mb-3">
-                        <label htmlFor="edificioNumeroInput" className="form-label">Número de Edificio:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="edificioNumeroInput"
-                            value={edificioNumero}
-                            onChange={handleEdificioNumeroChange}
-                        />
+                    <div class="input-group flex-nowrap mb-2">
+                        <span class="input-group-text" id="addon-wrapping">Número de Edificio:</span>
+                        <input type="text" class="form-control" placeholder="Número de Edificio" aria-label="Número de Edificio" aria-describedby="addon-wrapping" id="edificioNumeroInput" value={edificioNumero} onChange={handleEdificioNumeroChange}/>
                     </div>
                     <table className="table table-striped">
                         <thead>
@@ -69,6 +63,6 @@ function ReclamosPorEdificio() {
             </div>
         </div>
     );
-}
+} 
 
 export default ReclamosPorEdificio;

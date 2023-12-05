@@ -24,16 +24,10 @@ return (
               RECLAMOS POR PERSONA
           </div>
           <div className="card-body">
-              <div className="mb-3">
-                  <label htmlFor="edificioNumeroInput" className="form-label">Número de Documento:</label>
-                  <input
-                      type="text"
-                      className="form-control"
-                      id="edificioNumeroInput"
-                      value={documento}
-                      onChange={handleEdificioNumeroChange}
-                  />
-              </div>
+            <div class="input-group flex-nowrap mb-2">
+                <span class="input-group-text" id="addon-wrapping">Número de Documento:</span>
+                <input type="text" class="form-control" placeholder="Número de Documento" aria-label="Número de Documento" aria-describedby="addon-wrapping" id="edificioNumeroInput" value={documento} onChange={handleEdificioNumeroChange}/>
+            </div>
               <table className="table table-striped">
                   <thead>
                       <tr>
@@ -58,7 +52,7 @@ return (
                                   <td>{val.unidad}</td>
                                   <td>{val.estado}</td>
                               </tr>
-                          ))
+                          )) 
                       ) : (
                           <tr>
                               <td colSpan="7">No hay reclamos para esta persona</td>

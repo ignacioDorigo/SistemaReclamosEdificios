@@ -14,7 +14,7 @@ function ReclamosPorNumero() {
   const handleEdificioNumeroChange = (e) => {
     setNumeroReclamo(e.target.value);
   };
-
+ 
   return (
     <div className="container">
       <div className="card text-center">
@@ -22,15 +22,9 @@ function ReclamosPorNumero() {
           RECLAMOS POR NÚMERO
         </div>
         <div className="card-body">
-          <div className="mb-3">
-            <label htmlFor="edificioNumeroInput" className="form-label">Número de Reclamo:</label>
-            <input
-              type="text"
-              className="form-control"
-              id="edificioNumeroInput"
-              value={numero}
-              onChange={handleEdificioNumeroChange}
-            />
+          <div class="input-group flex-nowrap mb-2">
+              <span class="input-group-text" id="addon-wrapping">Número de Reclamo:</span>
+              <input type="text" class="form-control" placeholder="Número de Reclamo" aria-label="Número de Reclamo" aria-describedby="addon-wrapping" id="edificioNumeroInput" value={numero} onChange={handleEdificioNumeroChange}/>
           </div>
           {reclamosPorNumero !== null ? (
             <table className="table table-striped">
