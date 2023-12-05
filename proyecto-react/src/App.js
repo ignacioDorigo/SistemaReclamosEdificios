@@ -23,12 +23,8 @@ import HabitarUnidad from './components/HabitarUnidad';
 import BuscarImagenesPorNumeroReclamo from './components/BuscarImagenesPorNumeroReclamo';
 import AgregarImagenAReclamo from './components/AgregarImagenReclamo';
 import LiberarUnidad from './components/LiberarUnidad';
+import AgregarDuenioUnidad from './components/AgregarDuenioUnidad';
 
- 
-
-// ... (importaciones anteriores)
-
-// ... (importaciones anteriores)
 
 function App() {
   const [userType, setUserType] = useState(null);
@@ -227,6 +223,15 @@ function App() {
                 >
                   Unidades por Edificio
                 </button>
+
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'agregarDuenioUnidad' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('agregarDuenioUnidad')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
+                >
+                  Agregar Dueño a Unidad
+                </button>
               </div>
 
             </div>
@@ -381,6 +386,14 @@ function App() {
                 role="tabpanel"
               >
                 <LiberarUnidad />
+              </div>
+
+              <div   
+                className={`tab-pane fade ${currentView === 'agregarDuenioUnidad' ? 'show active' : ''}`}
+                id="pills-agregarDuenioUnidad"   
+                role="tabpanel" 
+              >   
+                <AgregarDuenioUnidad /> 
               </div>
 
               {/* Agrega más paneles según las opciones */}
