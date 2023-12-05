@@ -1,4 +1,3 @@
-
 import './App.css';
 import React, { useState } from 'react';
 
@@ -39,7 +38,7 @@ function App() {
 
   const renderAdminContent = () => {
     return (
-      <div className="container mt-5">
+      <div className="container ">
         <h1 className="mb-4">Bienvenido admin</h1>
         <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
           <li className="nav-item">
@@ -427,7 +426,7 @@ function App() {
 
   const renderNormalUserContent = () => {
     return (
-      <div className="container mt-5">
+      <div className="container ">
         <h1>Bienvenido usuario normal</h1>
         <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
           <li className="nav-item">
@@ -498,14 +497,30 @@ function App() {
 
   const [currentView, setView] = useState('');
 
+  const handleLogout = () => {
+    setUserType(null);
+    // Recargar la página
+    window.location.reload();
+  };
+
   return (
     <div className='App'>
       {userType === null ? (
         <Login onLogin={handleLogin} />
       ) : userType === 'admin' ? (
-        renderAdminContent()
+        <>
+          {renderAdminContent()}
+          <button className="btn btn-danger mt-3" onClick={handleLogout}>
+            Cerrar Sesión
+          </button>
+        </>
       ) : (
-        renderNormalUserContent()
+        <>
+          {renderNormalUserContent()}
+          <button className="btn btn-danger mt-3" onClick={handleLogout}>
+            Cerrar Sesión
+          </button>
+        </>
       )}
     </div>
   );
