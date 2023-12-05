@@ -40,6 +40,9 @@ function App() {
     return (
       <div className='centrar-parcialmente-container'>
         <div className="container ">
+        <br/>
+        <br/>
+        <br/>
           <div className="card text-center">
 
             <div className="card-header">
@@ -356,7 +359,11 @@ function App() {
   const renderNormalUserContent = () => {
     return (
       <div className="container ">
+        <br/>
+        <br/>
+        <br/>
         <div className="card text-center">
+          
           <div className="card-header">
               <h1>Bienvenido usuario normal</h1>
           </div>
@@ -415,7 +422,7 @@ function App() {
               {/* Agrega más paneles según las opciones */}
             </div>
           </div>
-          
+
         </div>
       </div>
     );

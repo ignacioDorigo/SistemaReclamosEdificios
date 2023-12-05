@@ -1,9 +1,16 @@
+
+
+
 .App {
   text-align: center;
-  background-color: grey;
-  height: 100vh;
-}
+  background-color: #ffffff; /* Fondo Principal */
+  color: #333333; /* Color de texto principal */
+  font-family: Arial, sans-serif; /* Fuente del texto */
+  margin: 0;
+  padding: 0;
 
+
+}
 
 
 .App-logo {
