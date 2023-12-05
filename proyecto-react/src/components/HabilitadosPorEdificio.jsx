@@ -32,7 +32,7 @@ function HabilitadosPorEdificio() {
                 <div className="card-body">
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Numero</span>
+                        <span class="input-group-text" id="basic-addon1">Numero Edificio</span>
                         <input type="number" class="form-control" placeholder="Numero" aria-label="Numero" aria-describedby="basic-addon1" value={numeroEdificio === 0 ? '' : numeroEdificio} onChange={(e) => setNumeroEdificio(e.target.value === '' ? '' : parseInt(e.target.value, 10))}/>
                     </div>
 

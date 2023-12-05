@@ -47,7 +47,7 @@ function DueniosPorUnidad() {
                 </div>
                 <div className="card-body">
                     <div className="input-group mb-3">
-                        <span className="input-group-text">Codigo</span>
+                        <span className="input-group-text">Codigo de Edificio</span>
                         <input type="text" className="form-control" id="numero1" value={numero1} onChange={handleChange1} />
                     </div>
                     <div className="input-group mb-3">
@@ -55,7 +55,7 @@ function DueniosPorUnidad() {
                         <input type="text" className="form-control" id="numero2" value={numero2} onChange={handleChange2} />
                     </div>
                     <div className="input-group mb-3">
-                        <label className="input-group-text">Unidad</label>
+                        <label className="input-group-text">Numero</label>
                         <input type="text" className="form-control" id="numero3" value={numero3} onChange={handleChange3} />
                     </div>
                     {sinResultados ? (

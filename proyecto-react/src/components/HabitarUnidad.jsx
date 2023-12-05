@@ -54,7 +54,7 @@ const HabitarUnidad = () => {
         <div className="card-body">
           <div className="input-group flex-nowrap mb-2">
             <span className="input-group-text" id="addon-wrapping">
-              Código
+              Código Edificio
             </span>
             <input
               type="text"

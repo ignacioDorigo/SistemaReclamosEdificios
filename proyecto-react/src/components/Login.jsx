@@ -1,4 +1,7 @@
+// Login.js
+
 import React, { useState } from 'react';
+import './Login.css';
 
 const Login = ({ onLogin }) => {
   const [mail, setMail] = useState('');
@@ -33,21 +36,29 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div>
-      <label htmlFor="mail">Correo electrónico:</label>
-      <input type="text" id="mail" value={mail} onChange={e => setMail(e.target.value)} />
+    <div className="login-container">
+      <h2>Iniciar Sesión</h2>
 
-      <label htmlFor="password">Contraseña:</label>
-      <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
+      <div className="form-group">
+        <label htmlFor="mail">Correo electrónico:</label>
+        <input type="text" id="mail" value={mail} onChange={e => setMail(e.target.value)} />
+      </div>
 
-      <label>
-        Admin:
-        <input type="checkbox" checked={admin} onChange={handleCheckboxChange} />
-      </label>
+      <div className="form-group">
+        <label htmlFor="password">Contraseña:</label>
+        <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
+      </div>
 
-      <button onClick={handleSubmit}>Iniciar sesión</button>
+      <div className="form-group checkbox-group">
+        <input type="checkbox" id="adminCheckbox" checked={admin} onChange={handleCheckboxChange} />
+        <label htmlFor="adminCheckbox">Sos admin?</label>
+      </div>
 
-      <p>{message}</p>
+      <button className="login-button" onClick={handleSubmit}>
+        Iniciar sesión
+      </button>
+
+      {message && <p className="error-message">{message}</p>}
     </div>
   );
 };

@@ -27,7 +27,7 @@ function DueniosPorEdificio() {
                 <div className="card-body">
 
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Numero</span>
+                        <span class="input-group-text" id="basic-addon1">Numero de Edificio</span>
                         <input type="number" class="form-control" placeholder="Numero" aria-label="Numero" aria-describedby="basic-addon1" value={numeroEdificio} onChange={handleNumeroEdificioChange}/>
                     </div>
 
