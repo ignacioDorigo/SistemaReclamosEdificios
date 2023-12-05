@@ -48,7 +48,7 @@ function App() {
 
             <div className="card-header">
               <h1>Bienvenido admin</h1>
-              <LiberarUnidad></LiberarUnidad>
+              
             </div>
 
             <div className="card-body">
@@ -108,7 +108,6 @@ function App() {
                 </button>
               </div>
 
-              
               <div className="btn-group" role="group" style={{ marginBottom: '20px' }}>
                 <button
                   type="button"
@@ -162,6 +161,15 @@ function App() {
                   style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Habitar Unidad
+                </button>
+
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'liberarUnidad' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('liberarUnidad')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
+                >
+                  Liberar Unidad
                 </button>
               </div>
               
@@ -365,6 +373,14 @@ function App() {
                 role="tabpanel"
               >
                 <UnidadesPorEdificio />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'liberarUnidad' ? 'show active' : ''}`}
+                id="pills-liberarUnidad"
+                role="tabpanel"
+              >
+                <LiberarUnidad />
               </div>
 
               {/* Agrega más paneles según las opciones */}
