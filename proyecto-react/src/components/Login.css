@@ -7,6 +7,13 @@
   height: 100vh; /* Ajusta la altura según sea necesario */
 }
 
+.centrar-parcialmente-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
 .login-container {
     max-width: 400px;
     margin: auto;

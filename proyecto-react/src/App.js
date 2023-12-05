@@ -38,388 +38,317 @@ function App() {
 
   const renderAdminContent = () => {
     return (
-      <div className="container ">
-        <h1 className="mb-4">Bienvenido admin</h1>
-        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'agregarPersona' ? 'active' : ''}`}
-              id="pills-agregarPersona-tab"
-              data-toggle="pill"
-              href="#pills-agregarPersona"
-              role="tab"
-              onClick={() => setView('agregarPersona')}
-            >
-              Agregar Persona
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'eliminarPersona' ? 'active' : ''}`}
-              id="pills-eliminarPersona-tab"
-              data-toggle="pill"
-              href="#pills-eliminarPersona"
-              role="tab"
-              onClick={() => setView('eliminarPersona')}
-            >
-              Eliminar Persona
-            </a>
-          </li>
+      <div className='centrar-parcialmente-container'>
+        <div className="container ">
+          <div className="card text-center">
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'agregarInquilinoUnidad' ? 'active' : ''}`}
-              id="pills-agregarInquilinoUnidad-tab"
-              data-toggle="pill"
-              href="#pills-agregarInquilinoUnidad"
-              role="tab"
-              onClick={() => setView('agregarInquilinoUnidad')}
-            >
-              Agregar Inquilino a Unidad
-            </a>
-          </li>
+            <div className="card-header">
+              <h1>Bienvenido admin</h1>
+            </div>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'alquilarUnidad' ? 'active' : ''}`}
-              id="pills-alquilarUnidad-tab"
-              data-toggle="pill"
-              href="#pills-alquilarUnidad"
-              role="tab"
-              onClick={() => setView('alquilarUnidad')}
-            >
-              Alquilar Unidad
-            </a>
-          </li>
+            <div className="card-body">
+              <div className="btn-group" role="group">
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'agregarPersona' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('agregarPersona')}
+                >
+                  Agregar Persona
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'buscarImagenesPorNumeroReclamo' ? 'active' : ''}`}
-              id="pills-buscarImagenesPorNumeroReclamo-tab"
-              data-toggle="pill"
-              href="#pills-buscarImagenesPorNumeroReclamo"
-              role="tab"
-              onClick={() => setView('buscarImagenesPorNumeroReclamo')}
-            >
-              Buscar Imágenes por Número de Reclamo
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'eliminarPersona' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('eliminarPersona')}
+                >
+                  Eliminar Persona
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'cambiarEstadoReclamo' ? 'active' : ''}`}
-              id="pills-cambiarEstadoReclamo-tab"
-              data-toggle="pill"
-              href="#pills-cambiarEstadoReclamo"
-              role="tab"
-              onClick={() => setView('cambiarEstadoReclamo')}
-            >
-              Cambiar Estado de Reclamo
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'agregarInquilinoUnidad' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('agregarInquilinoUnidad')}
+                >
+                  Agregar Inquilino a Unidad
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'dueniosPorEdificio' ? 'active' : ''}`}
-              id="pills-dueniosPorEdificio-tab"
-              data-toggle="pill"
-              href="#pills-dueniosPorEdificio"
-              role="tab"
-              onClick={() => setView('dueniosPorEdificio')}
-            >
-              Dueños por Edificio
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'alquilarUnidad' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('alquilarUnidad')}
+                >
+                  Alquilar Unidad
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'dueniosPorUnidad' ? 'active' : ''}`}
-              id="pills-dueniosPorUnidad-tab"
-              data-toggle="pill"
-              href="#pills-dueniosPorUnidad"
-              role="tab"
-              onClick={() => setView('dueniosPorUnidad')}
-            >
-              Dueños por Unidad
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'buscarImagenesPorNumeroReclamo' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('buscarImagenesPorNumeroReclamo')}
+                >
+                  Buscar Imágenes por Número de Reclamo
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'edificios' ? 'active' : ''}`}
-              id="pills-edificios-tab"
-              data-toggle="pill"
-              href="#pills-edificios"
-              role="tab"
-              onClick={() => setView('edificios')}
-            >
-              Edificios
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'cambiarEstadoReclamo' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('cambiarEstadoReclamo')}
+                >
+                  Cambiar Estado de Reclamo
+                </button>
+              </div>
+              
+              <div className="btn-group" role="group">
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'dueniosPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('dueniosPorEdificio')}
+                >
+                  Dueños por Edificio
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'habilitadosPorEdificio' ? 'active' : ''}`}
-              id="pills-habilitadosPorEdificio-tab"
-              data-toggle="pill"
-              href="#pills-habilitadosPorEdificio"
-              role="tab"
-              onClick={() => setView('habilitadosPorEdificio')}
-            >
-              Habilitados por Edificio
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'dueniosPorUnidad' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('dueniosPorUnidad')}
+                >
+                  Dueños por Unidad
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'habitantesPorEdificio' ? 'active' : ''}`}
-              id="pills-habitantesPorEdificio-tab"
-              data-toggle="pill"
-              href="#pills-habitantesPorEdificio"
-              role="tab"
-              onClick={() => setView('habitantesPorEdificio')}
-            >
-              Habitantes por Edificio
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'edificios' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('edificios')}
+                >
+                  Edificios
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'habitarUnidad' ? 'active' : ''}`}
-              id="pills-habitarUnidad-tab"
-              data-toggle="pill"
-              href="#pills-habitarUnidad"
-              role="tab"
-              onClick={() => setView('habitarUnidad')}
-            >
-              Habitar Unidad
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'habilitadosPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('habilitadosPorEdificio')}
+                >
+                  Habilitados por Edificio
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'reclamosPorEdificio' ? 'active' : ''}`}
-              id="pills-reclamosPorEdificio-tab"
-              data-toggle="pill"
-              href="#pills-reclamosPorEdificio"
-              role="tab"
-              onClick={() => setView('reclamosPorEdificio')}
-            >
-              Reclamos por Edificio
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'habitantesPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('habitantesPorEdificio')}
+                >
+                  Habitantes por Edificio
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'reclamosPorNumero' ? 'active' : ''}`}
-              id="pills-reclamosPorNumero-tab"
-              data-toggle="pill"
-              href="#pills-reclamosPorNumero"
-              role="tab"
-              onClick={() => setView('reclamosPorNumero')}
-            >
-              Reclamos por Número
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'habitarUnidad' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('habitarUnidad')}
+                >
+                  Habitar Unidad
+                </button>
+              </div>
+              
+              <div className="btn-group" role="group">
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'reclamosPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('reclamosPorEdificio')}
+                >
+                  Reclamos por Edificio
+                </button>
 
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'reclamosPorPersona' ? 'active' : ''}`}
-              id="pills-reclamosPorPersona-tab"
-              data-toggle="pill"
-              href="#pills-reclamosPorPersona"
-              role="tab"
-              onClick={() => setView('reclamosPorPersona')}
-            >
-              Reclamos por Persona
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'reclamosPorUnidad' ? 'active' : ''}`}
-              id="pills-reclamosPorUnidad-tab"
-              data-toggle="pill"
-              href="#pills-reclamosPorUnidad"
-              role="tab"
-              onClick={() => setView('reclamosPorUnidad')}
-            >
-              Reclamos por Unidad
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'transferirUnidad' ? 'active' : ''}`}
-              id="pills-transferirUnidad-tab"
-              data-toggle="pill"
-              href="#pills-transferirUnidad"
-              role="tab"
-              onClick={() => setView('transferirUnidad')}
-            >
-              Transferir Unidad
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'unidadesPorEdificio' ? 'active' : ''}`}
-              id="pills-unidadesPorEdificio-tab"
-              data-toggle="pill"
-              href="#pills-unidadesPorEdificio"
-              role="tab"
-              onClick={() => setView('unidadesPorEdificio')}
-            >
-              Unidades por Edificio
-            </a>
-          </li>
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'reclamosPorNumero' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('reclamosPorNumero')}
+                >
+                  Reclamos por Número
+                </button>
 
-          
-          {/* Agrega más opciones según tus necesidades */}
-        </ul>
-        <div className="tab-content">
-          <div
-            className={`tab-pane fade ${currentView === 'agregarPersona' ? 'show active' : ''}`}
-            id="pills-agregarPersona"
-            role="tabpanel"
-          >
-            <AgregarPersona />
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'reclamosPorPersona' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('reclamosPorPersona')}
+                >
+                  Reclamos por Persona
+                </button>
+
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'reclamosPorUnidad' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('reclamosPorUnidad')}
+                >
+                  Reclamos por Unidad
+                </button>
+
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'transferirUnidad' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('transferirUnidad')}
+                >
+                  Transferir Unidad
+                </button>
+
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'unidadesPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('unidadesPorEdificio')}
+                >
+                  Unidades por Edificio
+                </button>
+              </div>
+
+            </div>
+
+            <div class="card-footer text-muted">
+              <div className="tab-content">
+              <div
+                className={`tab-pane fade ${currentView === 'agregarPersona' ? 'show active' : ''}`}
+                id="pills-agregarPersona"
+                role="tabpanel"
+              >
+                <AgregarPersona />
+              </div>
+              <div
+                className={`tab-pane fade ${currentView === 'eliminarPersona' ? 'show active' : ''}`}
+                id="pills-eliminarPersona"
+                role="tabpanel"
+              >
+                <EliminarPersona />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'agregarInquilinoUnidad' ? 'show active' : ''}`}
+                id="pills-agregarInquilinoUnidad"
+                role="tabpanel"
+              >
+                <AgregarInquilinoUnidad />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'alquilarUnidad' ? 'show active' : ''}`}
+                id="pills-alquilarUnidad"
+                role="tabpanel"
+              >
+                <AlquilarUnidad />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'buscarImagenesPorNumeroReclamo' ? 'show active' : ''}`}
+                id="pills-buscarImagenesPorNumeroReclamo"
+                role="tabpanel"
+              >
+                <BuscarImagenesPorNumeroReclamo />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'cambiarEstadoReclamo' ? 'show active' : ''}`}
+                id="pills-cambiarEstadoReclamo"
+                role="tabpanel"
+              >
+                <CambiarEstadoReclamo />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'dueniosPorEdificio' ? 'show active' : ''}`}
+                id="pills-dueniosPorEdificio"
+                role="tabpanel"
+              >
+                <DueniosPorEdificio />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'dueniosPorUnidad' ? 'show active' : ''}`}
+                id="pills-dueniosPorUnidad"
+                role="tabpanel"
+              >
+                <DueniosPorUnidad />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'edificios' ? 'show active' : ''}`}
+                id="pills-edificios"
+                role="tabpanel"
+              >
+                <Edificios />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'habilitadosPorEdificio' ? 'show active' : ''}`}
+                id="pills-habilitadosPorEdificio"
+                role="tabpanel"
+              >
+                <HabilitadosPorEdificio />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'habitantesPorEdificio' ? 'show active' : ''}`}
+                id="pills-habitantesPorEdificio"
+                role="tabpanel"
+              >
+                <HabitantesPorEdificio />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'habitarUnidad' ? 'show active' : ''}`}
+                id="pills-habitarUnidad"
+                role="tabpanel"
+              >
+                <HabitarUnidad />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'reclamosPorEdificio' ? 'show active' : ''}`}
+                id="pills-reclamosPorEdificio"
+                role="tabpanel"
+              >
+                <ReclamosPorEdificio />
+              </div>
+
+              
+
+              <div
+                className={`tab-pane fade ${currentView === 'reclamosPorNumero' ? 'show active' : ''}`}
+                id="pills-reclamosPorNumero"
+                role="tabpanel"
+              >
+                <ReclamosPorNumero />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'reclamosPorPersona' ? 'show active' : ''}`}
+                id="pills-reclamosPorPersona"
+                role="tabpanel"
+              >
+                <ReclamosPorPersona />
+              </div>
+              <div
+                className={`tab-pane fade ${currentView === 'reclamosPorUnidad' ? 'show active' : ''}`}
+                id="pills-reclamosPorUnidad"
+                role="tabpanel"
+              >
+                <ReclamosPorUnidad />
+              </div>
+              <div
+                className={`tab-pane fade ${currentView === 'transferirUnidad' ? 'show active' : ''}`}
+                id="pills-transferirUnidad"
+                role="tabpanel"
+              >
+                <TransferirUnidad />
+              </div>
+              <div
+                className={`tab-pane fade ${currentView === 'unidadesPorEdificio' ? 'show active' : ''}`}
+                id="pills-unidadesPorEdificio"
+                role="tabpanel"
+              >
+                <UnidadesPorEdificio />
+              </div>
+
+              {/* Agrega más paneles según las opciones */}
+              </div>
+            </div>
           </div>
-          <div
-            className={`tab-pane fade ${currentView === 'eliminarPersona' ? 'show active' : ''}`}
-            id="pills-eliminarPersona"
-            role="tabpanel"
-          >
-            <EliminarPersona />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'agregarInquilinoUnidad' ? 'show active' : ''}`}
-            id="pills-agregarInquilinoUnidad"
-            role="tabpanel"
-          >
-            <AgregarInquilinoUnidad />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'alquilarUnidad' ? 'show active' : ''}`}
-            id="pills-alquilarUnidad"
-            role="tabpanel"
-          >
-            <AlquilarUnidad />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'buscarImagenesPorNumeroReclamo' ? 'show active' : ''}`}
-            id="pills-buscarImagenesPorNumeroReclamo"
-            role="tabpanel"
-          >
-            <BuscarImagenesPorNumeroReclamo />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'cambiarEstadoReclamo' ? 'show active' : ''}`}
-            id="pills-cambiarEstadoReclamo"
-            role="tabpanel"
-          >
-            <CambiarEstadoReclamo />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'dueniosPorEdificio' ? 'show active' : ''}`}
-            id="pills-dueniosPorEdificio"
-            role="tabpanel"
-          >
-            <DueniosPorEdificio />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'dueniosPorUnidad' ? 'show active' : ''}`}
-            id="pills-dueniosPorUnidad"
-            role="tabpanel"
-          >
-            <DueniosPorUnidad />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'edificios' ? 'show active' : ''}`}
-            id="pills-edificios"
-            role="tabpanel"
-          >
-            <Edificios />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'habilitadosPorEdificio' ? 'show active' : ''}`}
-            id="pills-habilitadosPorEdificio"
-            role="tabpanel"
-          >
-            <HabilitadosPorEdificio />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'habitantesPorEdificio' ? 'show active' : ''}`}
-            id="pills-habitantesPorEdificio"
-            role="tabpanel"
-          >
-            <HabitantesPorEdificio />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'habitarUnidad' ? 'show active' : ''}`}
-            id="pills-habitarUnidad"
-            role="tabpanel"
-          >
-            <HabitarUnidad />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'reclamosPorEdificio' ? 'show active' : ''}`}
-            id="pills-reclamosPorEdificio"
-            role="tabpanel"
-          >
-            <ReclamosPorEdificio />
-          </div>
-
-          
-
-          <div
-            className={`tab-pane fade ${currentView === 'reclamosPorNumero' ? 'show active' : ''}`}
-            id="pills-reclamosPorNumero"
-            role="tabpanel"
-          >
-            <ReclamosPorNumero />
-          </div>
-
-          <div
-            className={`tab-pane fade ${currentView === 'reclamosPorPersona' ? 'show active' : ''}`}
-            id="pills-reclamosPorPersona"
-            role="tabpanel"
-          >
-            <ReclamosPorPersona />
-          </div>
-          <div
-            className={`tab-pane fade ${currentView === 'reclamosPorUnidad' ? 'show active' : ''}`}
-            id="pills-reclamosPorUnidad"
-            role="tabpanel"
-          >
-            <ReclamosPorUnidad />
-          </div>
-          <div
-            className={`tab-pane fade ${currentView === 'transferirUnidad' ? 'show active' : ''}`}
-            id="pills-transferirUnidad"
-            role="tabpanel"
-          >
-            <TransferirUnidad />
-          </div>
-          <div
-            className={`tab-pane fade ${currentView === 'unidadesPorEdificio' ? 'show active' : ''}`}
-            id="pills-unidadesPorEdificio"
-            role="tabpanel"
-          >
-            <UnidadesPorEdificio />
-          </div>
-
-          {/* Agrega más paneles según las opciones */}
+            
         </div>
-        {/* Renderiza otros componentes según la opción seleccionada */}
       </div>
     );
   };
@@ -428,45 +357,31 @@ function App() {
     return (
       <div className="container ">
         <h1>Bienvenido usuario normal</h1>
-        <ul className="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'agregarReclamo' ? 'active' : ''}`}
-              id="pills-agregarReclamo-tab"
-              data-toggle="pill"
-              href="#pills-agregarReclamo"
-              role="tab"
-              onClick={() => setView('agregarReclamo')}
-            >
-              Agregar Reclamo
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'verMisReclamos' ? 'active' : ''}`}
-              id="pills-verMisReclamos-tab"
-              data-toggle="pill"
-              href="#pills-verMisReclamos"
-              role="tab"
-              onClick={() => setView('verMisReclamos')}
-            >
-              Ver Mis Reclamos
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className={`nav-link ${currentView === 'agregarImagenReclamo' ? 'active' : ''}`}
-              id="pills-agregarImagenReclamo-tab"
-              data-toggle="pill"
-              href="#pills-agregarImagenReclamo"
-              role="tab"
-              onClick={() => setView('agregarImagenReclamo')}
-            >
-              Agregar Imagen a Reclamo
-            </a>
-          </li>
-          {/* Agrega más opciones según tus necesidades */}
-        </ul>
+        <div className="btn-group" role="group">
+          <button
+            type="button"
+            className={`btn ${currentView === 'agregarReclamo' ? 'btn-primary' : 'btn-secondary'}`}
+            onClick={() => setView('agregarReclamo')}
+          >
+            Agregar Reclamo
+          </button>
+
+          <button
+            type="button"
+            className={`btn ${currentView === 'verMisReclamos' ? 'btn-primary' : 'btn-secondary'}`}
+            onClick={() => setView('verMisReclamos')}
+          >
+            Ver Mis Reclamos
+          </button>
+
+          <button
+            type="button"
+            className={`btn ${currentView === 'agregarImagenReclamo' ? 'btn-primary' : 'btn-secondary'}`}
+            onClick={() => setView('agregarImagenReclamo')}
+          >
+            Agregar Imagen a Reclamo
+          </button>
+        </div>
         <div className="tab-content">
           <div
             className={`tab-pane fade ${currentView === 'agregarReclamo' ? 'show active' : ''}`}

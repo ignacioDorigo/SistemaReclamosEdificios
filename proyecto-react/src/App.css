@@ -40,3 +40,18 @@
     transform: rotate(360deg);
   }
 }
+
+.contenedor-fila{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.contenedor-fila button{
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
