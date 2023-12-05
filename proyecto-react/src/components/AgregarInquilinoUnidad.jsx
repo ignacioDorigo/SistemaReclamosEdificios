@@ -50,24 +50,24 @@ const AgregarInquilinoUnidad = () => {
 
         <div className="card-body">
 
-          <div class="input-group flex-nowrap">
+          <div class="input-group flex-nowrap mb-2">
             <span class="input-group-text" id="addon-wrapping">Código</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value={codigo} onChange={(e) => setCodigo(e.target.value)}/>
+            <input type="text" class="form-control" placeholder="Código" aria-label="Username" aria-describedby="addon-wrapping" value={codigo} onChange={(e) => setCodigo(e.target.value)}/>
           </div>
 
-          <div class="input-group flex-nowrap">
+          <div class="input-group flex-nowrap mb-2">
             <span class="input-group-text" id="addon-wrapping">Piso</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value={piso} onChange={(e) => setPiso(e.target.value)}/>
+            <input type="text" class="form-control" placeholder="Piso" aria-label="Username" aria-describedby="addon-wrapping" value={piso} onChange={(e) => setPiso(e.target.value)}/>
           </div>
 
-          <div class="input-group flex-nowrap">
+          <div class="input-group flex-nowrap mb-2">
             <span class="input-group-text" id="addon-wrapping">Número</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value={numero} onChange={(e) => setNumero(e.target.value)}/>
+            <input type="text" class="form-control" placeholder="Número" aria-label="Username" aria-describedby="addon-wrapping" value={numero} onChange={(e) => setNumero(e.target.value)}/>
           </div>
 
-          <div class="input-group flex-nowrap">
+          <div class="input-group flex-nowrap mb-2">
             <span class="input-group-text" id="addon-wrapping">Documento del Inquilino</span>
-            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value={documento} onChange={(e) => setDocumento(e.target.value)}/>
+            <input type="text" class="form-control" placeholder="Documento del Inquilino" aria-label="Username" aria-describedby="addon-wrapping" value={documento} onChange={(e) => setDocumento(e.target.value)}/>
           </div>
 
         </div>

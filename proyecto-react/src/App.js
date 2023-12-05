@@ -1,5 +1,7 @@
 
 import './App.css';
+import React, { useState } from 'react';
+
 import Edificios from './components/Edificios';
 import Login from './components/Login';
 import AgregarPersona from './components/AgregarPersona'
@@ -25,15 +27,29 @@ import AgregarImagenAReclamo from './components/AgregarImagenReclamo';
  
 
 function App() {
+  const [userType, setUserType] = useState(null);
+
+  const handleLogin = (userType) => {
+    setUserType(userType);
+  };
+
   return (
-    <div className="App">
-      {/* <AgregarPersona/>
-      <EliminarPersona/> */}
-      <CambiarEstadoReclamo/>
-      {/* <TransferirUnidad/>
-      <UnidadesPorEdificio/> */}
+    <div className='App'>
+      {userType === null ? (
+        <Login onLogin={handleLogin} />
+      ) : userType === 'admin' ? (
+        <div>
+          <h1>Bienvenido admin</h1>
+          <AgregarPersona />
+        </div>
+      ) : (
+        <div>
+          <h1>Bienvenido usuario normal</h1>
+          <AgregarReclamo />
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;

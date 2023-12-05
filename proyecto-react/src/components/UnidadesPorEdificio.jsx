@@ -22,19 +22,15 @@ function UnidadesPorEdificio() {
       <div className="card text-center">
 
         <div className="card-header">
-            GESTION DE UNIDADES POR EDIFICIO
+            UNIDADES POR EDIFICIO
         </div>
 
         <div className="card-body">
-          <label>
-            Ingrese el número del edificio:
-            <input
-              type="text"  // Cambiado a 'text' para evitar que se borre
-              value={edificioId}
-              onChange={handleEdificioIdChange}
-            />
-          </label>
-          <button onClick={() => setEdificioId(edificioId)}>Buscar</button>
+
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">Ingrese el número del edificio</span>
+            <input type="text" class="form-control" placeholder="Ingrese el número del edificio" aria-label="Ingrese el número del edificio" aria-describedby="addon-wrapping" value={edificioId} onChange={handleEdificioIdChange}/>
+          </div>
 
           <table className="table table-striped">
             <thead>

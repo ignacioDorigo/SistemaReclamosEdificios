@@ -98,7 +98,7 @@ const EliminarPersona = () => {
         </div>
 
         <div className="card-footer text-muted">
-          <button type="button" className="btn btn-primary" onClick={handleClick}>
+          <button type="button" className="btn btn-danger" onClick={handleClick}>
             Eliminar Persona
           </button>
         </div>

@@ -3,14 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function DueniosPorUnidad() {
     const [dueniosPorUnidad, setDueniosPorUnidad] = useState([]);
-    const [numero1, setNumero1] = useState(1);
-    const [numero2, setNumero2] = useState(2);
-    const [numero3, setNumero3] = useState(3);
+    const [numero1, setNumero1] = useState('');
+    const [numero2, setNumero2] = useState('');
+    const [numero3, setNumero3] = useState('');
     const [sinResultados, setSinResultados] = useState(false);
 
     useEffect(() => {
         // Verifica si los inputs están vacíos
-        const inputsVacios = !numero1.trim() && !numero2.trim() && !numero3.trim();
+        const inputsVacios = !numero1.trim() || !numero2.trim() || !numero3.trim();
 
         if (inputsVacios) {
             setDueniosPorUnidad([]); // Reinicia la lista de resultados

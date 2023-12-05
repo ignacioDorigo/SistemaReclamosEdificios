@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [admin, setAdmin] = useState(false);
@@ -11,18 +11,16 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
-    // Construir la URL con los datos proporcionados
     const url = `http://localhost:8080/inicio/login/${encodeURIComponent(mail)}/${encodeURIComponent(password)}/${admin ? 1 : 0}`;
 
-    // Realizar la llamada a la API con fetch u otra librería
     fetch(url)
       .then(response => response.json())
       .then(data => {
         if (data) {
           if (admin) {
-            setMessage('Bienvenido admin');
+            onLogin('admin');
           } else {
-            setMessage('Bienvenido usuario normal');
+            onLogin('normal');
           }
         } else {
           setMessage('Datos incorrectos');
