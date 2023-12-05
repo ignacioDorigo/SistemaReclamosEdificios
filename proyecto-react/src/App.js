@@ -22,6 +22,7 @@ import AlquilarUnidad from './components/AlquilarUnidad';
 import HabitarUnidad from './components/HabitarUnidad';
 import BuscarImagenesPorNumeroReclamo from './components/BuscarImagenesPorNumeroReclamo';
 import AgregarImagenAReclamo from './components/AgregarImagenReclamo';
+import LiberarUnidad from './components/LiberarUnidad';
 
  
 
@@ -47,6 +48,7 @@ function App() {
 
             <div className="card-header">
               <h1>Bienvenido admin</h1>
+              <LiberarUnidad></LiberarUnidad>
             </div>
 
             <div className="card-body">

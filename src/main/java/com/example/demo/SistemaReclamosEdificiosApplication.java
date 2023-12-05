@@ -153,9 +153,10 @@ public class SistemaReclamosEdificiosApplication implements CommandLineRunner {
 
 			} else if (opcion == 18) {
 //				12) 
-				int codigoEdificio = 1;
-				String piso = "10";
-				String numero = "6";
+				int codigoEdificio = 2;
+				String piso = "25";
+				String numero = "3";
+				System.out.println("ENTREEEE ACA PARA LIBERAR");
 				controlador.liberarUnidad(codigoEdificio, piso, numero);
 
 			} else if (opcion == 19) {
