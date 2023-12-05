@@ -53,7 +53,7 @@ const AgregarImagenAReclamo = () => {
     <div className="container">
       <div className="card text-center">
         <div className="card-header">
-          GESTION DE EDIFICIOS
+          AGREGAR IMAGEN RECLAMO
         </div>
 
         <div className="card-body mb-2">

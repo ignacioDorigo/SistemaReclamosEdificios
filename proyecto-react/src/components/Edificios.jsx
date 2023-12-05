@@ -21,6 +21,7 @@ function Edificios() {
             <div className="card-header">
                 GESTION DE EDIFICIOS
             </div>
+            
             <div className="card-body">
                 <table className="table table-striped">
                     <thead>
@@ -29,18 +30,17 @@ function Edificios() {
                             <th scope="col">Direccion</th>                    
                         </tr>
                     </thead>
-                <tbody>
-                {
-                    edificios.map((val,key)=>{
-                    return <tr key={val.codigo}>
-                                <td>{val.nombre}</td>
-                                <td>{val.direccion}</td>
-                            </tr>
-                    })
-                }
-                </tbody>
-            </table>
-
+                    <tbody>
+                    {
+                        edificios.map((val,key)=>{
+                        return <tr key={val.codigo}>
+                                    <td>{val.nombre}</td>
+                                    <td>{val.direccion}</td>
+                                </tr>
+                        })
+                    }
+                    </tbody>
+                 </table>
             </div>
 
         </div>

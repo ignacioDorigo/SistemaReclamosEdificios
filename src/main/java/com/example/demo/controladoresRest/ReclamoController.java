@@ -61,7 +61,7 @@ public class ReclamoController {
 	}
 
 	@PutMapping("/cambiarEstado")
-	public void cambiarEstado(@RequestParam int numero, @RequestParam Estado estado) throws ReclamoException {
-		controlador.cambiarEstado(numero, estado);
+	public boolean cambiarEstado(@RequestParam int numero, @RequestParam Estado estado) throws ReclamoException {
+		return controlador.cambiarEstado(numero, estado);
 	}
 }

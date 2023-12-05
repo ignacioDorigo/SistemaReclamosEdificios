@@ -28,12 +28,8 @@ import AgregarImagenAReclamo from './components/AgregarImagenReclamo';
 function App() {
   return (
     <div className="App">
-      <AgregarImagenAReclamo/>
-      <AgregarInquilinoUnidad/>
-      <AgregarPersona/>
-      <AgregarReclamo/>
-      <AlquilarUnidad/>
-      <BuscarImagenesPorNumeroReclamo/>
+      {/* <AgregarPersona/>
+      <EliminarPersona/> */}
       <CambiarEstadoReclamo/>
       <DueniosPorEdificio/>
       <DueniosPorUnidad/>

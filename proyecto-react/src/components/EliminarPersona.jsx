@@ -1,90 +1,111 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 
-function EliminarPersona() {
+const EliminarPersona = () => {
   const [documento, setDocumento] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Verificar si el campo está vacío
+  const handleClick = async () => {
+    // Validar que el campo no esté vacío
     if (!documento) {
       Swal.fire({
         title: 'Error',
-        text: 'Por favor, ingresa un documento antes de eliminar.',
+        text: 'Por favor, ingresa un documento antes de intentar eliminar.',
         icon: 'error',
       });
       return;
     }
 
-    // Confirmar eliminación después de la verificación
-    const confirmarEliminacion = await Swal.fire({
-      title: "¿Estás seguro?",
-      text: "No podrás revertir esto",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Sí, eliminarlo"
+    // Alerta SweetAlert2 antes de realizar la eliminación
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger',
+      },
+      buttonsStyling: false,
     });
 
-    if (!confirmarEliminacion.isConfirmed) {
-      return;
-    }
+    swalWithBootstrapButtons
+      .fire({
+        title: '¿Estás seguro?',
+        text: 'No podrás revertir esto',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, eliminarlo',
+        cancelButtonText: 'No, cancelar',
+        reverseButtons: true,
+      })
+      .then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const response = await fetch(
+              `http://localhost:8080/personas/eliminarPersona?documento=${documento}`,
+              {
+                method: 'DELETE',
+              }
+            );
 
-    // Intentar eliminar la persona
-    try {
-      const response = await fetch(`http://localhost:8080/personas/eliminarPersona?documento=${documento}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+            if (response.ok) {
+              const data = await response.json();
+              if (data) {
+                // Persona eliminada exitosamente
+                swalWithBootstrapButtons.fire({
+                  title: '¡Eliminado!',
+                  text: 'La persona ha sido eliminada exitosamente.',
+                  icon: 'success',
+                });
+              } else {
+                console.log(
+                  'No se pudo eliminar la persona. El resultado es falso.'
+                );
+              }
+            } else {
+              console.error('Error al eliminar la persona');
+            }
+          } catch (error) {
+            console.error('Error en la solicitud:', error);
+          }
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          // Acción cancelada
+          swalWithBootstrapButtons.fire({
+            title: 'Cancelado',
+            text: 'La persona no se eliminó',
+            icon: 'error',
+          });
+        }
       });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(`Error al eliminar persona: ${errorData.message}`);
-      }
-
-      // Persona eliminada correctamente
-      Swal.fire({
-        title: "¡Eliminado!",
-        text: "Tu archivo ha sido eliminado.",
-        icon: "success"
-      });
-
-      // Puedes realizar alguna acción adicional después de eliminar la persona si es necesario
-
-    } catch (error) {
-      console.error(error.message);
-
-      // Muestra una alerta de error si falla la eliminación
-      Swal.fire({
-        title: "Error",
-        text: `Hubo un error al eliminar la persona: ${error.message}`,
-        icon: "error"
-      });
-    }
   };
 
   return (
-    <div className="container mt-4 rounded p-4">
-      <h2 className="mb-4">Eliminar Persona</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="documentoInput" className="form-label">Documento:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="documentoInput"
-            value={documento}
-            onChange={(e) => setDocumento(e.target.value)}
-          />
+    <div className='container'>
+      <div className="card text-center">
+        <div className="card-header">
+          <strong>ELIMINAR PERSONA</strong>
         </div>
-        <button type="submit" className="btn btn-danger">Eliminar Persona</button>
-      </form>
+
+        <div className="card-body">
+          <div className="input-group flex-nowrap">
+            <span className="input-group-text" id="addon-wrapping">Documento</span>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Documento"
+              aria-label="Documento"
+              aria-describedby="addon-wrapping"
+              value={documento}
+              onChange={(e) => setDocumento(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="card-footer text-muted">
+          <button onClick={handleClick}>
+            Eliminar Persona
+          </button>
+        </div>
+
+      </div>
     </div>
   );
-}
+};
 
 export default EliminarPersona;

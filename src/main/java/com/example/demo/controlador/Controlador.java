@@ -303,41 +303,47 @@ public class Controlador {
 	}
 
 	// 14 Listo REST
-	public void agregarPersona(String documento, String nombre) throws PersonaException {
-		try {
-			Persona persona = new Persona(documento, nombre, null, null, null);
-			Persona posible = buscarPersona(documento);
-			if (posible == null) {
-				personaRepository.save(persona);
-				System.out.println("Persona agregada");
-			} else {
-				System.out.println("La persona ya esta en la BD");
-			}
-		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
-		}
+	public boolean agregarPersona(String documento, String nombre) throws PersonaException {
+        try {
+            Persona persona = new Persona(documento, nombre, null, null, null);
+            Persona posible = buscarPersona(documento);
+            if (posible == null) {
+                personaRepository.save(persona);
+                System.out.println("Persona agregada");
+                return true;
+            } else {
+                System.out.println("La persona ya esta en la BD");
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return false;
 
-	}
+    }
 
 	// 15 Listo REST
-	public void eliminarPersona(String documento) throws PersonaException {
-		try {
-			Persona persona = buscarPersona(documento);
-			if (persona != null) {
-				List<Reclamo> reclamos = reclamoRepository.findAll();
-				for (Reclamo r : reclamos) {
-					if (r.getUsuario().getDocumento().equals(documento)) {
-						reclamoRepository.deleteById(r.getNumero());
-					}
-				}
+    public boolean eliminarPersona(String documento) throws PersonaException {
+        try {
+            Persona persona = buscarPersona(documento);
+            if (persona != null) {
+                List<Reclamo> reclamos = reclamoRepository.findAll();
+                for (Reclamo r : reclamos) {
+                    if (r.getUsuario().getDocumento().equals(documento)) {
+                        reclamoRepository.deleteById(r.getNumero());
+                    }
+                }
 
-				personaRepository.deleteById(documento);
-				System.out.println("Persona eliminada");
-			}
-		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
-		}
-	}
+                personaRepository.deleteById(documento);
+                System.out.println("Persona eliminada");
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return false;
+    }
 
 	// 16 Listo REST
 	public List<ReclamoView> reclamosPorEdificio(int codigo) throws EdificioException {
@@ -482,19 +488,21 @@ public class Controlador {
 	}
 
 	// 22 solo lo va a poder hacer el admin (hay que modificar 1/12)
-	public void cambiarEstado(int numero, Estado estado) throws ReclamoException {
-		try {
-			Reclamo reclamo = buscarReclamo(numero);
-			if (reclamo != null) {
-				reclamo.cambiarEstado(estado);
-				reclamoRepository.save(reclamo);
-				System.out.println("ESTADO DEL RECLAMO MODIFICADO");
-			}
-		} catch (Exception e) {
-			System.out.println("Error: " + e.getMessage());
-		}
-
-	}
+    public boolean cambiarEstado(int numero, Estado estado) throws ReclamoException {
+        try {
+            Reclamo reclamo = buscarReclamo(numero);
+            if (reclamo != null) {
+                reclamo.cambiarEstado(estado);
+                reclamoRepository.save(reclamo);
+                System.out.println("ESTADO DEL RECLAMO MODIFICADO");
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        return false;
+    }
 
 	// Listo (NO SE SI HAY QUE HACER REST)
 	private Edificio buscarEdificio(int codigo) throws EdificioException {

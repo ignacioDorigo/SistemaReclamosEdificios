@@ -1,89 +1,55 @@
 import React, { useState } from 'react';
-import EliminarPersona from './EliminarPersona';
-import AgregarPersona from './AgregarPersona';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [admin, setAdmin] = useState(false);
+  const [message, setMessage] = useState('');
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleCheckboxChange = () => {
+    setAdmin(!admin);
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handleSubmit = () => {
+    // Construir la URL con los datos proporcionados
+    const url = `http://localhost:8080/inicio/login/${encodeURIComponent(mail)}/${encodeURIComponent(password)}/${admin ? 1 : 0}`;
+
+    // Realizar la llamada a la API con fetch u otra librería
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        if (data) {
+          if (admin) {
+            setMessage('Bienvenido admin');
+          } else {
+            setMessage('Bienvenido usuario normal');
+          }
+        } else {
+          setMessage('Datos incorrectos');
+        }
+      })
+      .catch(error => {
+        console.error('Error en la llamada a la API:', error);
+        setMessage('Error en la llamada a la API');
+      });
   };
 
-  const handleAdminChange = () => {
-    setIsAdmin(!isAdmin);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch(`http://localhost:8080/inicio/login/${email}/${password}/${isAdmin ? 1 : 0}`);
-
-      if (response.ok) {
-        const data = await response.json();
-        // Aquí puedes realizar acciones como redirigir a otra página
-        console.log('Inicio de sesión exitoso:', data);
-
-        // Actualizar estados para indicar que el usuario ha iniciado sesión
-        setIsLoggedIn(true);
-      } else {
-        const errorData = await response.json();
-        console.error('Error al iniciar sesión:', errorData.message);
-      }
-    } catch (error) {
-      console.error('Error al autenticar:', error.message);
-    }
-  };
-
-  // Renderizar el diseño correspondiente en función del estado de inicio de sesión y administrador
   return (
     <div>
-      {isLoggedIn && isAdmin ? (
-        <div>
-          <h1>¡Bienvenido, Administrador!</h1>
-          {/* Renderizar el diseño del administrador aquí */}
+      <label htmlFor="mail">Correo electrónico:</label>
+      <input type="text" id="mail" value={mail} onChange={e => setMail(e.target.value)} />
 
-        </div>
-      ) : isLoggedIn ? (
-        <div>
-          <h1>¡Bienvenido, Usuario Normal!</h1>
-          {/* Renderizar el diseño del usuario normal aquí */}
-          {/* ReclamoPorPersona */}
-          {/* CrearReclamo */}
-          {/* AgregarImagenAReclamo */}
+      <label htmlFor="password">Contraseña:</label>
+      <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
 
-          
-        </div>
-      ) : (
-        <div>
-          <h1>Login</h1>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Correo Electrónico:
-              <input type="email" value={email} onChange={handleEmailChange} />
-            </label>
-            <br />
-            <label>
-              Contraseña:
-              <input type="password" value={password} onChange={handlePasswordChange} />
-            </label>
-            <br />
-            <label>
-              <input type="checkbox" checked={isAdmin} onChange={handleAdminChange} />
-              ¿Es Administrador?
-            </label>
-            <br />
-            <button type="submit">Iniciar Sesión</button>
-          </form>
-        </div>
-      )}
+      <label>
+        Admin:
+        <input type="checkbox" checked={admin} onChange={handleCheckboxChange} />
+      </label>
+
+      <button onClick={handleSubmit}>Iniciar sesión</button>
+
+      <p>{message}</p>
     </div>
   );
 };

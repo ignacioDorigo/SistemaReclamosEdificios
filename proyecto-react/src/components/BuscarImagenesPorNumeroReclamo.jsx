@@ -22,7 +22,6 @@ const BuscarImagenesPorNumeroReclamo = () => {
     // Mostrar la alerta de SweetAlert2 cuando se haga clic en la imagen
     Swal.fire({
       title: "Problema",
-
       imageUrl: imageUrl,
       imageWidth: 400,
       imageHeight: 200,
@@ -38,7 +37,7 @@ const BuscarImagenesPorNumeroReclamo = () => {
         </div>
         <div className="card-body">
           <div className="input-group flex-nowrap">
-            <span className="input-group-text" id="addon-wrapping">Ingrese el número del edificio:</span>
+            <span className="input-group-text" id="addon-wrapping">Ingrese el número de reclamo:</span>
             <input type="text" className="form-control" placeholder="número del edificio" aria-label="número del edificio" aria-describedby="addon-wrapping" value={reclamoId} onChange={handleEdificioIdChange} />
           </div>
 

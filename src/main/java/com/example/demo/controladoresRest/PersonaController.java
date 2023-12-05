@@ -18,13 +18,13 @@ public class PersonaController {
 	Controlador controlador;
 
 	@PostMapping("/agregarPersona")
-	public void agregarPersona(@RequestParam String documento, @RequestParam String nombre) throws PersonaException {
-		controlador.agregarPersona(documento, nombre);
+	public boolean agregarPersona(@RequestParam String documento, @RequestParam String nombre) throws PersonaException {
+		return controlador.agregarPersona(documento, nombre);
 	}
 	
 	@DeleteMapping("/eliminarPersona")
-	public void eliminarPersona(@RequestParam String documento) throws PersonaException{
-		controlador.eliminarPersona(documento);
+	public boolean eliminarPersona(@RequestParam String documento) throws PersonaException{
+		return controlador.eliminarPersona(documento);
 	}
 
 }

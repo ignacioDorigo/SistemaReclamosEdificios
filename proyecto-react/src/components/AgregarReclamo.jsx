@@ -61,78 +61,51 @@ function AgregarReclamo() {
   };
 
   return (
-    <div className="container mt-4">
-      <h2>Agregar Reclamo</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="container">
+      <div className="card text-center">
 
-        <div className="mb-3">
-          <label htmlFor="codigoInput" className="form-label">Codigo:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="codigoInput"
-            value={codigo}
-            onChange={(e) => setCodigo(e.target.value)}
-          />
+        <div className="card-header">
+          <strong>AGREGAR RECLAMO</strong>
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="pisoInput" className="form-label">Piso:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="pisoInput"
-            value={piso}
-            onChange={(e) => setPiso(e.target.value)}
-          />
-        </div>
+        <div className="card-body">
 
-        <div className="mb-3">
-          <label htmlFor="numeroInput" className="form-label">Numero:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="numeroInput"
-            value={numero}
-            onChange={(e) => setNumero(e.target.value)}
-          />
-        </div>
+          <form onSubmit={handleSubmit}>
 
-        <div className="mb-3">
-          <label htmlFor="documentoInput" className="form-label">Documento:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="documentoInput"
-            value={documento}
-            onChange={(e) => setDocumento(e.target.value)}
-          />
-        </div>
+            <div class="input-group flex-nowrap mb-2">
+              <span class="input-group-text" id="addon-wrapping">Codigo</span>
+              <input type="text" class="form-control" placeholder="Codigo" aria-label="Codigo" aria-describedby="addon-wrapping" id="codigoInput" value={codigo} onChange={(e) => setCodigo(e.target.value)}/>
+            </div>
 
-        <div className="mb-3">
-          <label htmlFor="ubicacionInput" className="form-label">Ubicacion:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="ubicacionInput"
-            value={ubicacion}
-            onChange={(e) => setUbicacion(e.target.value)}
-          />
-        </div>
+            <div class="input-group flex-nowrap mb-2">
+              <span class="input-group-text" id="addon-wrapping">Piso</span>
+              <input type="text" class="form-control" placeholder="Piso" aria-label="Piso" aria-describedby="addon-wrapping" id="pisoInput" value={piso} onChange={(e) => setPiso(e.target.value)}/>
+            </div>
 
-        <div className="mb-3">
-          <label htmlFor="descripcionInput" className="form-label">Descripcion:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="descripcionInput"
-            value={descripcion}
-            onChange={(e) => setDescripcion(e.target.value)}
-          />
-        </div>
+            <div class="input-group flex-nowrap mb-2">
+              <span class="input-group-text" id="addon-wrapping">Numero</span>
+              <input type="text" class="form-control" placeholder="Numero" aria-label="Numero" aria-describedby="addon-wrapping" id="numeroInput" value={numero} onChange={(e) => setNumero(e.target.value)}/>
+            </div>
 
-        <button type="submit" className="btn btn-primary">Agregar Reclamo</button>
-      </form>
+            <div class="input-group flex-nowrap mb-2">
+              <span class="input-group-text" id="addon-wrapping">Documento</span>
+              <input type="text" class="form-control" placeholder="Documento" aria-label="Documento" aria-describedby="addon-wrapping" id="documentoInput" value={documento} onChange={(e) => setDocumento(e.target.value)}/>
+            </div>
+
+            <div class="input-group flex-nowrap mb-2">
+              <span class="input-group-text" id="addon-wrapping">Ubicacion</span>
+              <input type="text" class="form-control" placeholder="Ubicacion" aria-label="Ubicacion" aria-describedby="addon-wrapping" id="ubicacionInput" value={ubicacion} onChange={(e) => setUbicacion(e.target.value)}/>
+            </div>
+
+            <div class="input-group flex-nowrap mb-2">
+              <span class="input-group-text" id="addon-wrapping">Descripcion</span>
+              <input type="text" class="form-control" placeholder="Descripcion" aria-label="Descripcion" aria-describedby="addon-wrapping" id="descripcionInput" value={descripcion} onChange={(e) => setDescripcion(e.target.value)}/>
+            </div>
+
+            <button type="submit" className="btn btn-primary">Agregar Reclamo</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

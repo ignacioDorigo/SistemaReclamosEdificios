@@ -42,35 +42,44 @@ const AgregarInquilinoUnidad = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h2>Agregar Inquilino a la Unidad</h2>
-      <form>
-        <div className="form-group">
-          <label>Código:</label>
-          <input type="text" className="form-control" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
+    <div className="container">
+      <div className="card text-center">
+        <div className="card-header">
+          <strong>AGREGAR INQUILINO A LA UNIDAD</strong>
         </div>
-        <div className="form-group">
-          <label>Piso:</label>
-          <input type="text" className="form-control" value={piso} onChange={(e) => setPiso(e.target.value)} />
+
+        <div className="card-body">
+
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">Código</span>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value={codigo} onChange={(e) => setCodigo(e.target.value)}/>
+          </div>
+
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">Piso</span>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value={piso} onChange={(e) => setPiso(e.target.value)}/>
+          </div>
+
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">Número</span>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value={numero} onChange={(e) => setNumero(e.target.value)}/>
+          </div>
+
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">Documento del Inquilino</span>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value={documento} onChange={(e) => setDocumento(e.target.value)}/>
+          </div>
+
         </div>
-        <div className="form-group">
-          <label>Número:</label>
-          <input type="text" className="form-control" value={numero} onChange={(e) => setNumero(e.target.value)} />
+        
+        <div class="card-footer text-muted">
+          <button type="button" className="btn btn-primary" onClick={handleAgregarInquilinoUnidad}>
+            Agregar Inquilino a la Unidad
+          </button>
         </div>
-        <div className="form-group">
-          <label>Documento del Inquilino:</label>
-          <input
-            type="text"
-            className="form-control"
-            value={documento}
-            onChange={(e) => setDocumento(e.target.value)}
-          />
-        </div>
-        <br/>
-        <button type="button" className="btn btn-primary" onClick={handleAgregarInquilinoUnidad}>
-          Agregar Inquilino a la Unidad
-        </button>
-      </form>
+        
+
+      </div>
     </div>
   );
 };
