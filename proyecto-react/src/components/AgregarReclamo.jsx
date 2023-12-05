@@ -93,8 +93,8 @@ function AgregarReclamo() {
             </div>
 
             <div class="input-group flex-nowrap mb-2">
-              <span class="input-group-text" id="addon-wrapping">Ubicacion</span>
-              <input type="text" class="form-control" placeholder="Ubicacion" aria-label="Ubicacion" aria-describedby="addon-wrapping" id="ubicacionInput" value={ubicacion} onChange={(e) => setUbicacion(e.target.value)}/>
+              <span class="input-group-text" id="addon-wrapping">Ubicacion Problema</span>
+              <input type="text" class="form-control" placeholder="Ubicacion Problema" aria-label="Ubicacion Problema" aria-describedby="addon-wrapping" id="ubicacionInput" value={ubicacion} onChange={(e) => setUbicacion(e.target.value)}/>
             </div>
 
             <div class="input-group flex-nowrap mb-2">

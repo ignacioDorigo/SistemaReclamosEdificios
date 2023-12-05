@@ -50,11 +50,12 @@ function App() {
             </div>
 
             <div className="card-body">
-              <div className="btn-group" role="group">
+              <div className="btn-group" role="group" style={{ marginBottom: '20px' }}>
                 <button
                   type="button"
                   className={`btn ${currentView === 'agregarPersona' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('agregarPersona')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Agregar Persona
                 </button>
@@ -63,6 +64,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'eliminarPersona' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('eliminarPersona')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Eliminar Persona
                 </button>
@@ -71,6 +73,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'agregarInquilinoUnidad' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('agregarInquilinoUnidad')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Agregar Inquilino a Unidad
                 </button>
@@ -79,6 +82,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'alquilarUnidad' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('alquilarUnidad')}
+                  style={{ marginRight: '10px', borderRadius: '5px'}}
                 >
                   Alquilar Unidad
                 </button>
@@ -87,6 +91,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'buscarImagenesPorNumeroReclamo' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('buscarImagenesPorNumeroReclamo')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Buscar Imágenes por Número de Reclamo
                 </button>
@@ -95,16 +100,19 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'cambiarEstadoReclamo' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('cambiarEstadoReclamo')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Cambiar Estado de Reclamo
                 </button>
               </div>
+
               
-              <div className="btn-group" role="group">
+              <div className="btn-group" role="group" style={{ marginBottom: '20px' }}>
                 <button
                   type="button"
                   className={`btn ${currentView === 'dueniosPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('dueniosPorEdificio')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Dueños por Edificio
                 </button>
@@ -113,6 +121,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'dueniosPorUnidad' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('dueniosPorUnidad')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Dueños por Unidad
                 </button>
@@ -121,6 +130,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'edificios' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('edificios')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Edificios
                 </button>
@@ -129,6 +139,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'habilitadosPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('habilitadosPorEdificio')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Habilitados por Edificio
                 </button>
@@ -137,6 +148,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'habitantesPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('habitantesPorEdificio')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Habitantes por Edificio
                 </button>
@@ -145,16 +157,18 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'habitarUnidad' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('habitarUnidad')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Habitar Unidad
                 </button>
               </div>
               
-              <div className="btn-group" role="group">
+              <div className="btn-group" role="group" style={{ marginBottom: '20px' }}>
                 <button
                   type="button"
                   className={`btn ${currentView === 'reclamosPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('reclamosPorEdificio')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Reclamos por Edificio
                 </button>
@@ -163,6 +177,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'reclamosPorNumero' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('reclamosPorNumero')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Reclamos por Número
                 </button>
@@ -171,6 +186,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'reclamosPorPersona' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('reclamosPorPersona')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Reclamos por Persona
                 </button>
@@ -179,6 +195,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'reclamosPorUnidad' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('reclamosPorUnidad')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Reclamos por Unidad
                 </button>
@@ -187,6 +204,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'transferirUnidad' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('transferirUnidad')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Transferir Unidad
                 </button>
@@ -195,6 +213,7 @@ function App() {
                   type="button"
                   className={`btn ${currentView === 'unidadesPorEdificio' ? 'btn-primary' : 'btn-secondary'}`}
                   onClick={() => setView('unidadesPorEdificio')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Unidades por Edificio
                 </button>
@@ -369,11 +388,12 @@ function App() {
           </div>
 
           <div className="card-body">
-            <div className="btn-group" role="group">
+            <div className="btn-group" role="group" style={{ marginBottom: '20px' }}>
               <button
                 type="button"
                 className={`btn ${currentView === 'agregarReclamo' ? 'btn-primary' : 'btn-secondary'}`}
                 onClick={() => setView('agregarReclamo')}
+                style={{ marginRight: '10px', borderRadius: '5px' }}
               >
                 Agregar Reclamo
               </button>
@@ -382,6 +402,7 @@ function App() {
                 type="button"
                 className={`btn ${currentView === 'verMisReclamos' ? 'btn-primary' : 'btn-secondary'}`}
                 onClick={() => setView('verMisReclamos')}
+                style={{ marginRight: '10px', borderRadius: '5px' }}
               >
                 Ver Mis Reclamos
               </button>
@@ -390,6 +411,7 @@ function App() {
                 type="button"
                 className={`btn ${currentView === 'agregarImagenReclamo' ? 'btn-primary' : 'btn-secondary'}`}
                 onClick={() => setView('agregarImagenReclamo')}
+                style={{ marginRight: '10px', borderRadius: '5px' }}
               >
                 Agregar Imagen a Reclamo
               </button>
