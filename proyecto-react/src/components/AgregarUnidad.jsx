@@ -35,32 +35,40 @@ const AgregarUnidad = () => {
   };
 
   return (
-    <div>
-      <h2>Agregar Unidad</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Código de la Unidad:
-          <input type="number" value={codigoUnidad} onChange={(e) => setCodigoUnidad(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Piso:
-          <input type="text" value={piso} onChange={(e) => setPiso(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Número:
-          <input type="text" value={numero} onChange={(e) => setNumero(e.target.value)} />
-        </label>
-        <br />
-        <label>
-          Código:
-          <input type="number" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
-        </label>
-        <br />
-        <button type="submit">Agregar Unidad</button>
-      </form>
-      {mensaje && <p>{mensaje}</p>}
+    <div className="container">
+        <div className="card text-center">
+            <div className="card-header">
+                AGREGAR UNIDAD
+            </div>
+
+            <div className="card-body mb-2">
+                <form onSubmit={handleSubmit}>
+                    <label>
+                    Código de la Unidad:
+                    <input type="number" value={codigoUnidad} onChange={(e) => setCodigoUnidad(e.target.value)} />
+                    </label>
+                    <br />
+                    <label>
+                    Piso:
+                    <input type="text" value={piso} onChange={(e) => setPiso(e.target.value)} />
+                    </label>
+                    <br />
+                    <label>
+                    Número:
+                    <input type="text" value={numero} onChange={(e) => setNumero(e.target.value)} />
+                    </label>
+                    <br />
+                    <label>
+                    Código:
+                    <input type="number" value={codigo} onChange={(e) => setCodigo(e.target.value)} />
+                    </label>
+                    <br />
+                    <button type="submit">Agregar Unidad</button>
+                </form>
+                {mensaje && <p>{mensaje}</p>}
+
+            </div>
+        </div>
     </div>
   );
 };

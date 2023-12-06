@@ -44,7 +44,7 @@ const AgregarDuenioUnidad = () => {
         <div className="card-header">
           AGREGAR DUEÑO A LA UNIDAD
         </div>
-
+ 
         <div className="card-body mb-2">
           <div className="input-group flex-nowrap mb-2">
             <span className="input-group-text" id="addon-wrapping">Código Edificio:</span>
