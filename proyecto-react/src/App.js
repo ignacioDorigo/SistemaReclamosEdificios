@@ -24,6 +24,9 @@ import BuscarImagenesPorNumeroReclamo from './components/BuscarImagenesPorNumero
 import AgregarImagenAReclamo from './components/AgregarImagenReclamo';
 import LiberarUnidad from './components/LiberarUnidad';
 import AgregarDuenioUnidad from './components/AgregarDuenioUnidad';
+import AgregarUnidad from './components/AgregarUnidad';
+import EliminarEdificio from './components/EliminarEdificio';
+import AgregarEdificio from './components/AgregarEdificio';
 
 
 function App() {
@@ -157,6 +160,33 @@ function App() {
                   style={{ marginRight: '10px', borderRadius: '5px' }}
                 >
                   Habitar Unidad
+                </button>
+
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'agregarEdificio' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('agregarEdificio')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
+                >
+                  Agregar Edificio
+                </button>
+
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'eliminarEdificio' ? 'btn-danger' : 'btn-secondary'}`}
+                  onClick={() => setView('eliminarEdificio')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
+                >
+                  Eliminar Edificio
+                </button>
+
+                <button
+                  type="button"
+                  className={`btn ${currentView === 'agregarUnidad' ? 'btn-primary' : 'btn-secondary'}`}
+                  onClick={() => setView('agregarUnidad')}
+                  style={{ marginRight: '10px', borderRadius: '5px' }}
+                >
+                  Agregar Unidad
                 </button>
 
                 <button
@@ -395,6 +425,35 @@ function App() {
               >   
                 <AgregarDuenioUnidad /> 
               </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'agregarEdificio' ? 'show active' : ''}`}
+                id="pills-agregarEdificio"
+                role="tabpanel"
+              >
+                <AgregarEdificio />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'eliminarEdificio' ? 'show active' : ''}`}
+                id="pills-eliminarEdificio"
+                role="tabpanel"
+              >
+                <EliminarEdificio />
+              </div>
+
+              <div
+                className={`tab-pane fade ${currentView === 'agregarUnidad' ? 'show active' : ''}`}
+                id="pills-agregarUnidad"
+                role="tabpanel"
+              >
+                <AgregarUnidad />
+              </div>
+              
+
+
+
+
               </div>
             </div>
           </div>
@@ -486,6 +545,7 @@ function App() {
 
   return (
     <div className='App'>
+
       {userType === null ? (
         <Login onLogin={handleLogin} />
       ) : userType === 'admin' ? (
