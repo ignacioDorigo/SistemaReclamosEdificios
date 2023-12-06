@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -591,7 +592,7 @@ public class Controlador {
 	}
 
 	// Hay que hacer rest (agregue 1/12)
-	public void agregarEdificio(int codigo, String nombre, String direccion) {
+	public boolean agregarEdificio(int codigo, String nombre, String direccion) {
 		List<Edificio> edificios = edificioRepository.findAll();
 		boolean sePuedeCrear = true;
 		for (Edificio edificio : edificios) {
@@ -602,13 +603,15 @@ public class Controlador {
 		}
 		if (sePuedeCrear == false) {
 			System.out.println("No se puede crear ya que el codigo o direccion esta repetido ");
+			return false;
 		} else {
 			Edificio nuevo = new Edificio(codigo, nombre, direccion);
 			edificioRepository.save(nuevo);
+			return true;
 		}
 	}
-
-	public void eliminarEdificio(int codigo) {
+	
+	public boolean eliminarEdificio(int codigo) {
 		if (edificioRepository.existsById(codigo)) {// Si existe ese codigo de edifcio en la bd
 			List<Reclamo> reclamos = reclamoRepository.findAll();
 			for (Reclamo r : reclamos) {
@@ -616,13 +619,33 @@ public class Controlador {
 					reclamoRepository.deleteById(r.getNumero()); // borramos los reclamos asociados a ese edificio
 				}
 			}
+
 			System.out.println("El edificio se ha eliminado");
 			edificioRepository.deleteById(codigo);
+			return true;
 		} else {
 			System.out.println("El edificio con ese codigo no existe");
 		}
+		return false;
 
 	}
+
+	public boolean agregarUnidad(int id, String piso, String numero, int codigo)
+            throws EdificioException, UnidadException {
+        Edificio edificio = buscarEdificio(codigo);
+        Unidad posible = buscarUnidad(codigo, piso, numero);
+        if (posible == null) {
+            System.out.println("entre");
+            Unidad u = new Unidad(id, piso, numero, edificio);
+            System.out.println("Unidad agregada esa unidad");
+            unidadRepository.save(u);
+            return true;
+        } else {
+            System.out.println("Ya existe esa unidad");
+            return false;
+        }
+
+    }
 
 	// Hay que verificar que no pueda haber 2
 	// edificios con el mismo codigo ni direccion
@@ -658,4 +681,8 @@ public class Controlador {
 	}
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> BACKUP
 }
