@@ -680,9 +680,4 @@ public class Controlador {
 		}
 	}
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> BACKUP
 }
