@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.controlador.Controlador;
+import com.example.demo.exceptions.EdificioException;
 import com.example.demo.exceptions.PersonaException;
 import com.example.demo.exceptions.UnidadException;
 import com.example.demo.views.PersonaView;
@@ -79,6 +80,12 @@ public class UnidadController {
 			throws UnidadException {
 		controlador.habitarUnidad(codigo, piso, numero);
 	}
+
+	@PostMapping("/agregarUnidad/{id}/{piso}/{numero}/{codigo}")
+    public boolean agregarUnidad(@PathVariable int id, @PathVariable String piso, @PathVariable String numero,
+            @PathVariable int codigo) throws EdificioException, UnidadException {
+        return controlador.agregarUnidad(id, piso, numero, codigo);
+    }
 	
 	
 

@@ -630,13 +630,22 @@ public class Controlador {
 
 	}
 
-	public boolean agregarUnidad(int id, String piso, String numero, int codigo) throws EdificioException {
-		Edificio edificio = buscarEdificio(codigo);
-		Unidad u = new Unidad(id, piso, numero, edificio);
-		unidadRepository.save(u);
-		return true;
+	public boolean agregarUnidad(int id, String piso, String numero, int codigo)
+            throws EdificioException, UnidadException {
+        Edificio edificio = buscarEdificio(codigo);
+        Unidad posible = buscarUnidad(codigo, piso, numero);
+        if (posible == null) {
+            System.out.println("entre");
+            Unidad u = new Unidad(id, piso, numero, edificio);
+            System.out.println("Unidad agregada esa unidad");
+            unidadRepository.save(u);
+            return true;
+        } else {
+            System.out.println("Ya existe esa unidad");
+            return false;
+        }
 
-	}
+    }
 
 	// Hay que verificar que no pueda haber 2
 	// edificios con el mismo codigo ni direccion
@@ -670,5 +679,7 @@ public class Controlador {
 			unidadRepository.save(u);
 		}
 	}
+
+
 
 }
