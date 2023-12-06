@@ -13,7 +13,6 @@ function AgregarReclamo() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validar que todos los campos estén completos
     if (!codigo || !piso || !numero || !documento || !ubicacion || !descripcion) {
       Swal.fire({
         title: 'Error',
@@ -23,7 +22,6 @@ function AgregarReclamo() {
       return;
     }
 
-    // Realizar la solicitud POST
     fetch('http://localhost:8080/reclamos/agregarReclamo', {
       method: 'POST',
       headers: {
@@ -48,14 +46,12 @@ function AgregarReclamo() {
         }
       })
       .then(() => {
-        // Manejar la respuesta del servidor si es necesario
         Swal.fire({
           title: '<strong>Registro Exitoso</strong>',
           html: '<i>El Reclamo fue registrado con éxito</i>',
           icon: 'success',
           timer: 2000
         });
-        // Puedes realizar alguna acción adicional después de agregar el reclamo
       })
       .catch(error => console.error('Error al agregar reclamo:', error));
   };

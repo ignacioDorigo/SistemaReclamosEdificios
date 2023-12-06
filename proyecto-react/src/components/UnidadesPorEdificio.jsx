@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 function UnidadesPorEdificio() {
   const [unidadesPorEdificio, setUnidadesPorEdificio] = useState([]);
-  const [edificioId, setEdificioId] = useState('1'); // Cambiado a string para evitar problemas al no permitir borrar
+  const [edificioId, setEdificioId] = useState('1'); 
 
   useEffect(() => {
     fetch(`http://localhost:8080/edificios/listarUnidadesPorEdificio/${edificioId}`)
@@ -12,7 +12,6 @@ function UnidadesPorEdificio() {
   }, [edificioId]);
 
   const handleEdificioIdChange = (event) => {
-    // Asegurarse de que solo se ingresen números
     const numericValue = event.target.value.replace(/\D/g, '');
     setEdificioId(numericValue);
   };

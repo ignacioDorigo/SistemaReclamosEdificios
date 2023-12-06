@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 function ReclamosPorPersona() {
 
   const [reclamosPorPersona, setReclamosPorPersona] = useState([]); 
-  const [documento, setEdificioNumero] = useState(''); // Valor inicial, puedes cambiarlo según tus necesidades
+  const [documento, setEdificioNumero] = useState(''); 
 
   useEffect(() => {
     fetch(`http://localhost:8080/reclamos/reclamosPorPersona/${documento}`)

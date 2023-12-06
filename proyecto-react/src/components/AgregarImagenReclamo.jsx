@@ -9,7 +9,6 @@ const AgregarImagenAReclamo = () => {
   const [documento, setDocumento] = useState('');
 
   const handleAgregarImagenAReclamo = async () => {
-    // Validar que todos los campos estén completos
     if (!numero || !direccion || !tipo || !documento) {
       Swal.fire({
         title: 'Error',
@@ -29,7 +28,6 @@ const AgregarImagenAReclamo = () => {
       });
 
       if (response.ok) {
-        // La solicitud fue exitosa
         Swal.fire({
           title: '<strong>Registro Exitoso</strong>',
           html: '<i>La Imagen fue agregada con éxito</i>',
@@ -37,7 +35,6 @@ const AgregarImagenAReclamo = () => {
           timer: 2000
         });
       } else {
-        // La solicitud falló
         Swal.fire({
           title: 'Error',
           text: 'Por favor, verificar todos los campos.',

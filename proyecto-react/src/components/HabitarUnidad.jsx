@@ -8,9 +8,7 @@ const HabitarUnidad = () => {
   const [numero, setNumero] = useState('');
 
   const handleHabitarUnidad = async () => {
-    // Validar que todos los campos estén completos
     if (!codigo || !piso || !numero) {
-      // Mostrar una alerta usando SweetAlert2
       Swal.fire({
         title: 'Error',
         text: 'Todos los campos son obligatorios',
@@ -28,7 +26,6 @@ const HabitarUnidad = () => {
       });
 
       if (response.ok) {
-        // La solicitud fue exitosa
         Swal.fire({
           title: '<strong>Registro Exitoso</strong>',
           html: '<i>La unidad se habilitó</i>',
@@ -36,7 +33,6 @@ const HabitarUnidad = () => {
           timer: 2000
         });
       } else {
-        // La solicitud falló
         console.error('Error al habitar la unidad');
       }
     } catch (error) {

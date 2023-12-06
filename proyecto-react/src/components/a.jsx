@@ -23,11 +23,6 @@ import HabitarUnidad from './components/HabitarUnidad';
 import BuscarImagenesPorNumeroReclamo from './components/BuscarImagenesPorNumeroReclamo';
 import AgregarImagenAReclamo from './components/AgregarImagenReclamo';
 
- 
-
-// ... (importaciones anteriores)
-
-// ... (importaciones anteriores)
 
 function App() {
   const [userType, setUserType] = useState(null);
@@ -185,7 +180,6 @@ function App() {
               Unidades por Edificio
             </button>
 
-            {/* Agrega más botones según tus necesidades */}
           </div>
           
         <div className="tab-content">
@@ -330,10 +324,7 @@ function App() {
           >
             <UnidadesPorEdificio />
           </div>
-
-          {/* Agrega más paneles según las opciones */}
         </div>
-        {/* Renderiza otros componentes según la opción seleccionada */}
       </div>
     );
   };
@@ -389,7 +380,6 @@ function App() {
           >
             <AgregarImagenAReclamo />
           </div>
-          {/* Agrega más paneles según las opciones */}
         </div>
       </div>
     );
@@ -399,7 +389,6 @@ function App() {
 
   const handleLogout = () => {
     setUserType(null);
-    // Recargar la página
     window.location.reload();
   };
 

@@ -20,7 +20,6 @@ const AgregarInquilinoUnidad = () => {
       });
 
       if (response.ok) {
-        // La solicitud fue exitosa
         Swal.fire({
           title: '<strong>Registro Exitoso</strong>',
           html: '<i>El inquilino fue agregado con exito</i>',
@@ -28,7 +27,6 @@ const AgregarInquilinoUnidad = () => {
           timer: 2000
         })
       } else {
-        // La solicitud falló
         Swal.fire({
           title: "Oops...",
           html: "No se pudo agregar!",

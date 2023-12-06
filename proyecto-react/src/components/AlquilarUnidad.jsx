@@ -8,7 +8,6 @@ const AlquilarUnidad = () => {
   const [documento, setDocumento] = useState('');
 
   const handleAlquilarUnidad = async () => {
-    // Validar que todos los campos estén completos
     if (!codigo || !piso || !numero || !documento) {
       Swal.fire({
         title: 'Error',
@@ -28,7 +27,6 @@ const AlquilarUnidad = () => {
       });
 
       if (response.ok) {
-        // La solicitud fue exitosa
         Swal.fire({
           title: '<strong>Alquiler Exitoso</strong>',
           html: '<i>Unidad alquilada exitosamente</i>',
@@ -36,7 +34,6 @@ const AlquilarUnidad = () => {
           timer: 2000
         });
       } else {
-        // La solicitud falló
         Swal.fire({
           title: 'Error',
           text: 'Hubo un error al alquilar la unidad',
@@ -45,7 +42,6 @@ const AlquilarUnidad = () => {
       }
     } catch (error) {
       console.error('Error en la solicitud:', error);
-      // Mostrar un mensaje de error genérico
       Swal.fire({
         title: 'Error',
         text: 'Hubo un error al procesar la solicitud',

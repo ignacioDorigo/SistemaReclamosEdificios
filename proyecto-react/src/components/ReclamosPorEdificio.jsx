@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ReclamosPorEdificio() {
     const [reclamosPorEdificio, setReclamosPorEdificio] = useState([]);
-    const [edificioNumero, setEdificioNumero] = useState('2'); // Valor inicial, puedes cambiarlo según tus necesidades
+    const [edificioNumero, setEdificioNumero] = useState('2'); 
 
     useEffect(() => {
         fetch(`http://localhost:8080/reclamos/reclamosPorEdificio/${edificioNumero}`)

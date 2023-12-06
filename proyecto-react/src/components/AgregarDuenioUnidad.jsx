@@ -8,7 +8,6 @@ const AgregarDuenioUnidad = () => {
   const [documento, setDocumento] = useState('DNI93277649');
 
   const handleClick = async () => {
-    // Validar campos vacíos
     if (!codigo || !piso || !numero || !documento) {
       Swal.fire({
         title: 'Error',

@@ -5,7 +5,6 @@ const EliminarPersona = () => {
   const [documento, setDocumento] = useState('');
 
   const handleClick = async () => {
-    // Validar que el campo no esté vacío
     if (!documento) {
       Swal.fire({
         title: 'Error',
@@ -15,7 +14,6 @@ const EliminarPersona = () => {
       return;
     }
 
-    // Alerta SweetAlert2 antes de realizar la eliminación
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -47,7 +45,6 @@ const EliminarPersona = () => {
             if (response.ok) {
               const data = await response.json();
               if (data) {
-                // Persona eliminada exitosamente
                 swalWithBootstrapButtons.fire({
                   title: '¡Eliminado!',
                   text: 'La persona ha sido eliminada exitosamente.',
@@ -65,7 +62,6 @@ const EliminarPersona = () => {
             console.error('Error en la solicitud:', error);
           }
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-          // Acción cancelada
           swalWithBootstrapButtons.fire({
             title: 'Cancelado',
             text: 'La persona no se eliminó',

@@ -2,18 +2,14 @@ import React, { useState } from 'react';
 import Swal from 'sweetalert2'
 
 const CambiarEstadoReclamo = () => {
-  // Estado local para almacenar el número y estado del reclamo
   const [numero, setNumero] = useState('');
-  const [estado, setEstado] = useState('abierto'); // Valor predeterminado, puedes establecerlo según tus necesidades
+  const [estado, setEstado] = useState('abierto'); 
 
-  // Lista predefinida de estados permitidos
   const estadosPermitidos = ['nuevo', 'abierto', 'enProceso', 'desestimado', 'anulado', 'terminado'];
 
-  // Manejar el cambio en el select del estado
   const handleEstadoChange = (e) => {
     const nuevoEstado = e.target.value;
 
-    // Verificar si el nuevo estado es uno de los permitidos
     if (estadosPermitidos.includes(nuevoEstado)) {
       setEstado(nuevoEstado);
     } else {
@@ -21,15 +17,12 @@ const CambiarEstadoReclamo = () => {
     }
   };
 
-  // Manejar el clic en el botón para cambiar el estado
   const handleClick = async () => {
     try {
-      // Hacer la solicitud HTTP usando fetch
       const response = await fetch(`http://localhost:8080/reclamos/cambiarEstado?numero=${numero}&estado=${estado}`, {
         method: 'PUT',
       });
 
-      // Verificar si la solicitud fue exitosa
       if (response.ok) {
         const data = await response.json();
         if (data) {

@@ -9,7 +9,6 @@ const TransferirUnidad = () => {
   const [documento, setDocumento] = useState('');
 
   const handleTransferirUnidad = async () => {
-    // Validar que todos los campos estén llenos
     if (!codigo || !piso || !numero || !documento) {
       Swal.fire({
         title: 'Error',
@@ -29,7 +28,6 @@ const TransferirUnidad = () => {
       });
 
       if (response.ok) {
-        // La solicitud fue exitosa
         Swal.fire({
           title: '<strong>Registro Exitoso</strong>',
           html: '<i>Unidad transferida exitosamente!</i>',
@@ -37,7 +35,6 @@ const TransferirUnidad = () => {
           timer: 2000,
         });
       } else {
-        // La solicitud falló
         console.error('Error al transferir la unidad');
       }
     } catch (error) {

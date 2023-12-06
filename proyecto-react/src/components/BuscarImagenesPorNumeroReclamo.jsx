@@ -19,7 +19,6 @@ const BuscarImagenesPorNumeroReclamo = () => {
   };
 
   const handleImageClick = (imageUrl) => {
-    // Mostrar la alerta de SweetAlert2 cuando se haga clic en la imagen
     Swal.fire({
       title: "Problema",
       imageUrl: imageUrl,
@@ -55,7 +54,6 @@ const BuscarImagenesPorNumeroReclamo = () => {
                   <tr key={val.reclamoId}>
                     <td>{val.numero}</td>
                     <td>
-                      {/* Envolver el contenido en un hipervínculo y agregar onClick */}
                       <a href="#" onClick={() => handleImageClick(val.direccion)}>
                         {val.direccion}
                       </a>

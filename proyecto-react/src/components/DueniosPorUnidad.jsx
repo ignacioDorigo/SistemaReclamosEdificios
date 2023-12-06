@@ -9,20 +9,19 @@ function DueniosPorUnidad() {
     const [sinResultados, setSinResultados] = useState(false);
 
     useEffect(() => {
-        // Verifica si los inputs están vacíos
         const inputsVacios = !numero1.trim() || !numero2.trim() || !numero3.trim();
 
         if (inputsVacios) {
-            setDueniosPorUnidad([]); // Reinicia la lista de resultados
+            setDueniosPorUnidad([]);
             setSinResultados(true);
-            return; // Evita hacer la solicitud si los inputs están vacíos
+            return; 
         }
 
         fetch(`http://localhost:8080/unidades/listarDueniosPorUnidad/${numero1}/${numero2}/${numero3}`)
             .then(response => response.json())
             .then(data => {
                 setDueniosPorUnidad(data);
-                setSinResultados(data.length === 0); // Verifica si hay resultados
+                setSinResultados(data.length === 0);
             })
             .catch(error => console.error('Error fetching edificios:', error));
     }, [numero1, numero2, numero3]);

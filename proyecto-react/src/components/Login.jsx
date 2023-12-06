@@ -1,5 +1,3 @@
-// Login.js
-
 import React, { useState } from 'react';
 import './Login.css';
 import Swal from 'sweetalert2';
@@ -15,14 +13,13 @@ const Login = ({ onLogin }) => {
   };
 
   const handleSubmit = () => {
-    // Validar campos vacíos
     if (mail.trim() === '' || password.trim() === '') {
       Swal.fire({
         title: 'Error',
         text: 'Por favor, completa todos los campos',
         icon: 'error',
       });
-      return; // Detener la ejecución si hay campos vacíos
+      return; 
     }
 
     const url = `http://localhost:8080/inicio/login/${encodeURIComponent(mail)}/${encodeURIComponent(password)}/${admin ? 1 : 0}`;

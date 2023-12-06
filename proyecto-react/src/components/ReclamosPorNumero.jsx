@@ -40,7 +40,6 @@ function ReclamosPorNumero() {
                 </tr>
               </thead>
               <tbody>
-                {/* Renderizar la fila de datos aquí */}
                 <tr key={reclamosPorNumero?.codigo}>
                   <td>{reclamosPorNumero?.numero}</td>
                   <td>{reclamosPorNumero?.usuario}</td>

@@ -395,12 +395,9 @@ function App() {
               >   
                 <AgregarDuenioUnidad /> 
               </div>
-
-              {/* Agrega más paneles según las opciones */}
               </div>
             </div>
           </div>
-            
         </div>
       </div>
     );
@@ -472,7 +469,6 @@ function App() {
               >
                 <AgregarImagenAReclamo />
               </div>
-              {/* Agrega más paneles según las opciones */}
             </div>
           </div>
 
@@ -485,7 +481,6 @@ function App() {
 
   const handleLogout = () => {
     setUserType(null);
-    // Recargar la página
     window.location.reload();
   };
 
@@ -511,5 +506,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

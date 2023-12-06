@@ -9,12 +9,9 @@ function AgregarPersona() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Desactivar el botón durante la solicitud
     setIsLoading(true);
 
-    // Validar que ambos campos estén llenos
     if (!documento || !nombre) {
-      // Restaurar el estado de isLoading si hay un error
       setIsLoading(false);
 
       Swal.fire({
@@ -25,7 +22,6 @@ function AgregarPersona() {
       return;
     }
 
-    // Realizar la solicitud POST
     fetch('http://localhost:8080/personas/agregarPersona', {
       method: 'POST',
       headers: {
@@ -40,12 +36,10 @@ function AgregarPersona() {
         if (!response.ok) {
           throw new Error('Error al agregar persona');
         }
-        return response.json(); // Parsear la respuesta como JSON
+        return response.json(); 
       })
       .then(data => {
-        // Verificar el valor de la respuesta
         if (data === true) {
-          // Mostrar la alerta de éxito
           Swal.fire({
             title: '<strong>Registro Exitoso</strong>',
             html: `<i>La persona <strong>${nombre}</strong> fue registrada con éxito</i>`,
@@ -53,13 +47,11 @@ function AgregarPersona() {
             timer: 2000
           });
         } else {
-          // Mostrar la alerta de error
           throw new Error('Error al agregar persona');
         }
       })
       .catch(error => {
         console.error('Error al agregar persona:', error);
-        // Muestra un mensaje de error
         Swal.fire({
           title: 'Error',
           text: `Hubo un error al agregar la persona: ${error.message}`,
@@ -67,7 +59,6 @@ function AgregarPersona() {
         });
       })
       .finally(() => {
-        // Restaurar el estado de isLoading después de la solicitud
         setIsLoading(false);
       });
   };

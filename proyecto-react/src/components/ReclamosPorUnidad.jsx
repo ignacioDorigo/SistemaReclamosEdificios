@@ -10,14 +10,11 @@ function ReclamosPorUnidad() {
   const [descripcion, setDescripcion] = useState('');
   const [unidad, setUnidad] = useState('');
   const [estado, setEstado] = useState('');
-
-  // Estados para los números de la URL
   const [numeroUrl, setNumeroUrl] = useState(2);
   const [usuarioUrl, setUsuarioUrl] = useState(10);
   const [edificioUrl, setEdificioUrl] = useState(6);
 
   useEffect(() => {
-    // Actualizar la URL con los números actuales
     const url = `http://localhost:8080/reclamos/reclamosPorUnidad/${numeroUrl}/${usuarioUrl}/${edificioUrl}`;
 
     fetch(url)
@@ -33,26 +30,22 @@ function ReclamosPorUnidad() {
           GESTION DE RECLAMOS POR UNIDAD
         </div>
         <div className="card-body">
-            {/* Input para el número */}
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Cod Edificio</span>
                 <input type="text" class="form-control" placeholder="Cod Edificio" aria-label="Username" aria-describedby="basic-addon1" value={numero} onChange={e => setNumero(e.target.value)} onBlur={() => setNumeroUrl(numero)}/>
             </div>
 
-          {/* Input para el usuario */}
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Piso</span>
                 <input type="text" class="form-control" placeholder="Piso" aria-label="Username" aria-describedby="basic-addon1" value={usuario} onChange={e => setUsuario(e.target.value)} onBlur={() => setUsuarioUrl(usuario)}/>
             </div>
 
-          {/* Input para el edificio */}
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Departamento</span>
                 <input type="text" class="form-control" placeholder="Departamento" aria-label="Username" aria-describedby="basic-addon1" value={edificio} onChange={e => setEdificio(e.target.value)} onBlur={() => setEdificioUrl(edificio)}/>
             </div>
 
 
-          {/* Resto del código... */}
           <table className="table table-striped">
             <thead>
               <tr>

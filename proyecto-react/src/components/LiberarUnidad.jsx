@@ -7,7 +7,6 @@ const LiberarUnidad = () => {
   const [numero, setNumero] = useState('3');
 
   const handleClick = () => {
-    // Validar campos vacíos
     if (!codigo || !piso || !numero) {
       Swal.fire({
         title: 'Error',
@@ -17,10 +16,8 @@ const LiberarUnidad = () => {
       return;
     }
 
-    // Construir la URL con los parámetros
     const url = `http://localhost:8080/unidades/liberarUnidad?codigo=${codigo}&piso=${piso}&numero=${numero}`;
 
-    // Realizar la petición DELETE utilizando fetch
     fetch(url, {
       method: 'DELETE',
     })
@@ -71,8 +68,6 @@ const LiberarUnidad = () => {
             Liberar Unidad
           </button>
         </div>
-
-
       </div>
     </div>
   );
