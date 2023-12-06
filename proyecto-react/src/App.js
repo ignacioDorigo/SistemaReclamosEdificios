@@ -24,6 +24,9 @@ import BuscarImagenesPorNumeroReclamo from './components/BuscarImagenesPorNumero
 import AgregarImagenAReclamo from './components/AgregarImagenReclamo';
 import LiberarUnidad from './components/LiberarUnidad';
 import AgregarDuenioUnidad from './components/AgregarDuenioUnidad';
+import AgregarEdificio from './components/AgregarEdificio';
+import EliminarEdificio from './components/EliminarEdificio';
+import AgregarUnidad from './components/AgregarUnidad';
 
 
 function App() {
@@ -491,6 +494,10 @@ function App() {
 
   return (
     <div className='App'>
+      <AgregarEdificio/>
+      <EliminarEdificio/>
+      <AgregarUnidad/>
+
       {userType === null ? (
         <Login onLogin={handleLogin} />
       ) : userType === 'admin' ? (

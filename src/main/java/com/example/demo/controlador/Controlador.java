@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -176,9 +177,12 @@ public class Controlador {
 		try {
 			Unidad unidad = buscarUnidad(codigo, piso, numero);
 			Persona persona = buscarPersona(documento);
+			System.out.println(unidad);
+			System.out.println(persona);
 			if (unidad != null && persona != null) {
 				unidad.transferir(persona);// falta hacer update
 				unidadRepository.save(unidad);
+				agregarEspacioComun(codigo, persona);
 				System.out.println("UNIDAD TRANSFERIDA");
 			} else {
 				System.out.println("LA UNIDAD O LA PERSONA NO EXISTE");
@@ -189,32 +193,33 @@ public class Controlador {
 	}
 
 	// 9 Listo REST
-    public void agregarDuenioUnidad(int codigo, String piso, String numero, String documento)
-            throws UnidadException, PersonaException {
-        try {
-            Unidad unidad = buscarUnidad(codigo, piso, numero);
-            Persona persona = buscarPersona(documento);
-            if(unidad!=null && persona!=null) {
-                List<Persona> duenios = unidad.getDuenios();
-                boolean yaEsta = false;
-                for(Persona duenio : duenios) {
-                    if(duenio.getDocumento().equals(documento)) {
-                        yaEsta = true;
-                        break;
-                    }
-                }
-                if(yaEsta==false) {
-                    unidad.agregarDuenio(persona);
-                    unidadRepository.save(unidad);
-                    System.out.println("Duenio agregado a la unidad");
-                }
-            }
+	public void agregarDuenioUnidad(int codigo, String piso, String numero, String documento)
+			throws UnidadException, PersonaException {
+		try {
+			Unidad unidad = buscarUnidad(codigo, piso, numero);
+			Persona persona = buscarPersona(documento);
+			if (unidad != null && persona != null) {
+				List<Persona> duenios = unidad.getDuenios();
+				boolean yaEsta = false;
+				for (Persona duenio : duenios) {
+					if (duenio.getDocumento().equals(documento)) {
+						yaEsta = true;
+						break;
+					}
+				}
+				if (yaEsta == false) {
+					unidad.agregarDuenio(persona);
+					unidadRepository.save(unidad);
+					System.out.println("Duenio agregado a la unidad");
+					agregarEspacioComun(codigo, persona);
+				}
+			}
 
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
 
-    }
+	}
 
 	// 10 Listo REST
 	public void alquilarUnidad(int codigo, String piso, String numero, String documento)
@@ -229,6 +234,7 @@ public class Controlador {
 					unidad.alquilar(persona);
 					unidadRepository.save(unidad);
 					System.out.println("Unidad alquilada");
+					agregarEspacioComun(codigo, persona);
 				}
 			}
 		} catch (Exception e) {
@@ -238,36 +244,37 @@ public class Controlador {
 	}
 
 	// 11 Listo REST
-    public void agregarInquilinoUnidad(int codigo, String piso, String numero, String documento)
-            throws UnidadException, PersonaException {
-        try {
-            Unidad unidad = buscarUnidad(codigo, piso, numero);
-            System.out.println(unidad);
-            Persona persona = buscarPersona(documento);
-            System.out.println(persona);
-            if (persona != null && unidad != null) {
-                if (unidad.estaHabitado() == false) {
-                    unidad.habitar();
-                }
-                List<Persona> inquilinos = unidad.getInquilinos();
-                boolean yaEsta = false;
-                for (Persona inquilino : inquilinos) {
-                    if (inquilino.getDocumento().equals(documento)) {
-                        yaEsta = true;
-                        break;
-                    }
-                }
-                if (yaEsta == false) {
-                    unidad.agregarInquilino(persona);
-                    unidadRepository.save(unidad);
-                    System.out.println("Inquilino agregado");
-                }
+	public void agregarInquilinoUnidad(int codigo, String piso, String numero, String documento)
+			throws UnidadException, PersonaException {
+		try {
+			Unidad unidad = buscarUnidad(codigo, piso, numero);
+			System.out.println(unidad);
+			Persona persona = buscarPersona(documento);
+			System.out.println(persona);
+			if (persona != null && unidad != null) {
+				if (unidad.estaHabitado() == false) {
+					unidad.habitar();
+				}
+				List<Persona> inquilinos = unidad.getInquilinos();
+				boolean yaEsta = false;
+				for (Persona inquilino : inquilinos) {
+					if (inquilino.getDocumento().equals(documento)) {
+						yaEsta = true;
+						break;
+					}
+				}
+				if (yaEsta == false) {
+					unidad.agregarInquilino(persona);
+					unidadRepository.save(unidad);
+					System.out.println("Inquilino agregado");
+					agregarEspacioComun(codigo, persona);
+				}
 
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
 	// 12 Listo REST
 	public void liberarUnidad(int codigo, String piso, String numero) throws UnidadException {
@@ -304,46 +311,46 @@ public class Controlador {
 
 	// 14 Listo REST
 	public boolean agregarPersona(String documento, String nombre) throws PersonaException {
-        try {
-            Persona persona = new Persona(documento, nombre, null, null, null);
-            Persona posible = buscarPersona(documento);
-            if (posible == null) {
-                personaRepository.save(persona);
-                System.out.println("Persona agregada");
-                return true;
-            } else {
-                System.out.println("La persona ya esta en la BD");
-                return false;
-            }
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        return false;
+		try {
+			Persona persona = new Persona(documento, nombre, null, null, null);
+			Persona posible = buscarPersona(documento);
+			if (posible == null) {
+				personaRepository.save(persona);
+				System.out.println("Persona agregada");
+				return true;
+			} else {
+				System.out.println("La persona ya esta en la BD");
+				return false;
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		return false;
 
-    }
+	}
 
 	// 15 Listo REST
-    public boolean eliminarPersona(String documento) throws PersonaException {
-        try {
-            Persona persona = buscarPersona(documento);
-            if (persona != null) {
-                List<Reclamo> reclamos = reclamoRepository.findAll();
-                for (Reclamo r : reclamos) {
-                    if (r.getUsuario().getDocumento().equals(documento)) {
-                        reclamoRepository.deleteById(r.getNumero());
-                    }
-                }
+	public boolean eliminarPersona(String documento) throws PersonaException {
+		try {
+			Persona persona = buscarPersona(documento);
+			if (persona != null) {
+				List<Reclamo> reclamos = reclamoRepository.findAll();
+				for (Reclamo r : reclamos) {
+					if (r.getUsuario().getDocumento().equals(documento)) {
+						reclamoRepository.deleteById(r.getNumero());
+					}
+				}
 
-                personaRepository.deleteById(documento);
-                System.out.println("Persona eliminada");
-                return true;
-            }
-            return false;
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        return false;
-    }
+				personaRepository.deleteById(documento);
+				System.out.println("Persona eliminada");
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		return false;
+	}
 
 	// 16 Listo REST
 	public List<ReclamoView> reclamosPorEdificio(int codigo) throws EdificioException {
@@ -488,21 +495,21 @@ public class Controlador {
 	}
 
 	// 22 solo lo va a poder hacer el admin (hay que modificar 1/12)
-    public boolean cambiarEstado(int numero, Estado estado) throws ReclamoException {
-        try {
-            Reclamo reclamo = buscarReclamo(numero);
-            if (reclamo != null) {
-                reclamo.cambiarEstado(estado);
-                reclamoRepository.save(reclamo);
-                System.out.println("ESTADO DEL RECLAMO MODIFICADO");
-                return true;
-            }
-            return false;
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        return false;
-    }
+	public boolean cambiarEstado(int numero, Estado estado) throws ReclamoException {
+		try {
+			Reclamo reclamo = buscarReclamo(numero);
+			if (reclamo != null) {
+				reclamo.cambiarEstado(estado);
+				reclamoRepository.save(reclamo);
+				System.out.println("ESTADO DEL RECLAMO MODIFICADO");
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		return false;
+	}
 
 	// Listo (NO SE SI HAY QUE HACER REST)
 	private Edificio buscarEdificio(int codigo) throws EdificioException {
@@ -585,7 +592,7 @@ public class Controlador {
 	}
 
 	// Hay que hacer rest (agregue 1/12)
-	public void agregarEdificio(int codigo, String nombre, String direccion) {
+	public boolean agregarEdificio(int codigo, String nombre, String direccion) {
 		List<Edificio> edificios = edificioRepository.findAll();
 		boolean sePuedeCrear = true;
 		for (Edificio edificio : edificios) {
@@ -596,13 +603,15 @@ public class Controlador {
 		}
 		if (sePuedeCrear == false) {
 			System.out.println("No se puede crear ya que el codigo o direccion esta repetido ");
+			return false;
 		} else {
 			Edificio nuevo = new Edificio(codigo, nombre, direccion);
 			edificioRepository.save(nuevo);
+			return true;
 		}
 	}
-
-	public void eliminarEdificio(int codigo) {
+	
+	public boolean eliminarEdificio(int codigo) {
 		if (edificioRepository.existsById(codigo)) {// Si existe ese codigo de edifcio en la bd
 			List<Reclamo> reclamos = reclamoRepository.findAll();
 			for (Reclamo r : reclamos) {
@@ -610,11 +619,22 @@ public class Controlador {
 					reclamoRepository.deleteById(r.getNumero()); // borramos los reclamos asociados a ese edificio
 				}
 			}
+
 			System.out.println("El edificio se ha eliminado");
 			edificioRepository.deleteById(codigo);
+			return true;
 		} else {
 			System.out.println("El edificio con ese codigo no existe");
 		}
+		return false;
+
+	}
+
+	public boolean agregarUnidad(int id, String piso, String numero, int codigo) throws EdificioException {
+		Edificio edificio = buscarEdificio(codigo);
+		Unidad u = new Unidad(id, piso, numero, edificio);
+		unidadRepository.save(u);
+		return true;
 
 	}
 
@@ -641,6 +661,14 @@ public class Controlador {
 		}
 		System.out.println("Hay algun dato incorrecto");
 		return false;
+	}
+
+	public void agregarEspacioComun(int codigoEdificio, Persona p) throws UnidadException {
+		Unidad u = buscarUnidad(codigoEdificio, "1", "1");
+		if (esDuenio(u.getDuenios(), p) == false) {
+			u.agregarDuenio(p);
+			unidadRepository.save(u);
+		}
 	}
 
 }
